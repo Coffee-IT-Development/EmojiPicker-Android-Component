@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="nl.coffeeit.aroma.bottomsheet">
+
+    <application>
+        <activity
+            android:name="nl.aroma.bottomsheet.MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.Sample" />
+    </application>
+
+</manifest>
