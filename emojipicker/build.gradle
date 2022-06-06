@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -54,4 +56,14 @@ dependencies {
     // Integration with observables
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
     implementation "androidx.compose.compiler:compiler:$compose_version"
+
+    implementation("com.squareup.moshi:moshi-kotlin:$moshi_version")
+
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    kaptTest "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+
+    implementation 'com.google.code.gson:gson:2.9.0'
 }

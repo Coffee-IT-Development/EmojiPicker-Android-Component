@@ -3,7 +3,7 @@ package nl.coffeeit.aroma.sample
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.platform.ComposeView
-import nl.coffeeit.aroma.bottomsheet.EmojiPicker
+import nl.coffeeit.aroma.emojipicker.presentation.components.EmojiPicker
 
 class ActiveDevelopmentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
