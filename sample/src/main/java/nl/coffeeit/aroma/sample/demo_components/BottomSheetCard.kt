@@ -19,35 +19,57 @@ fun BottomSheetCard(
     scope: CoroutineScope,
     state: ModalBottomSheetState,
     updateRoundedCornerValue: (Int) -> Unit,
-    updateColorValue: (Color) -> Unit
+    updateColorValue: (Color) -> Unit,
+    updateCloseButtonChecked: (Boolean) -> Unit
 ) {
     Card(
         elevation = 4.dp
     ) {
         Column(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxSize()
         ) {
 
             var cornerRadius by remember { mutableStateOf("0")}
             var colorValue by remember { mutableStateOf("")}
             var colorValueError by remember { mutableStateOf(false) }
+            var hasCloseButton by remember { mutableStateOf(false) }
 
-            OutlinedTextField(
-                value = cornerRadius,
-                onValueChange = {
-                    cornerRadius = it
-                    if (it.isNotBlank() && TextUtils.isDigitsOnly(it)) {
-                        updateRoundedCornerValue(it.toInt())
-                    }
-                },
-                label = { Text("Rounded corner radius") },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                singleLine = true,
-                maxLines = 1,
-                modifier = Modifier
-                    .fillMaxWidth(0.50f)
-                    .wrapContentHeight()
-            )
+            Row(
+                modifier = Modifier.wrapContentHeight()
+            ) {
+                OutlinedTextField(
+                    value = cornerRadius,
+                    onValueChange = {
+                        cornerRadius = it
+                        if (it.isNotBlank() && TextUtils.isDigitsOnly(it)) {
+                            updateRoundedCornerValue(it.toInt())
+                        }
+                    },
+                    label = { Text("Rounded corner radius") },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                    singleLine = true,
+                    maxLines = 1,
+                    modifier = Modifier
+                        .fillMaxWidth(0.50f)
+                        .wrapContentHeight()
+                )
+
+                Spacer(modifier = Modifier.width(32.dp))
+
+                Column(
+                    modifier = Modifier.wrapContentHeight(),
+                ) {
+                    Text(text = "Close button?")
+                    Checkbox(checked = hasCloseButton, onCheckedChange = {
+                        hasCloseButton = it
+                        updateCloseButtonChecked(it)
+                    } )
+                }
+
+            }
+
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -55,13 +77,12 @@ fun BottomSheetCard(
                 value = colorValue,
                 onValueChange = {
                     colorValue = it
-                    try {
+                    colorValueError = try {
                         val color = Color(parseColor("#$it"))
                         updateColorValue(color)
-                        colorValueError = false
-
+                        false
                     } catch (e: IllegalArgumentException) {
-                        colorValueError = true
+                        true
                     }
                 },
                 label = { Text("Scrim color") },

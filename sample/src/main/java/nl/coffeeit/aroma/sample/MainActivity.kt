@@ -40,6 +40,7 @@ fun ComponentsDemoScreen(
 ) {
     var roundedCornerValue by remember { mutableStateOf(0) }
     var backgroundColor by remember { mutableStateOf(Color(0x60000000)) }
+    var hasCloseButton by remember { mutableStateOf(false) }
 
     BottomSheetWithContent(
         { state, scope ->
@@ -61,9 +62,10 @@ fun ComponentsDemoScreen(
 
                     Spacer(modifier = Modifier.height(32.dp))
 
-                    BottomSheetCard(scope = scope, state = state, { roundedCornerValue = it }, {
-                        backgroundColor = it
-                    })
+                    BottomSheetCard(scope = scope, state = state,
+                        updateRoundedCornerValue = { roundedCornerValue = it },
+                        updateColorValue = { backgroundColor = it },
+                        updateCloseButtonChecked = { hasCloseButton = it })
 
                     Spacer(modifier = Modifier.height(32.dp))
 
@@ -71,10 +73,7 @@ fun ComponentsDemoScreen(
                 }
 
                 BackHandler(
-                    enabled = (state.currentValue ==
-                            ModalBottomSheetValue.HalfExpanded
-                            || state.currentValue ==
-                            ModalBottomSheetValue.Expanded),
+                    enabled = (state.currentValue != ModalBottomSheetValue.Hidden),
                     onBack = {
                         scope.launch { state.hide() }
                     }
@@ -97,6 +96,7 @@ fun ComponentsDemoScreen(
             }
         },
         cornerShape = RoundedCornerShape(roundedCornerValue.dp),
+        hasCloseButton = hasCloseButton,
         scrimColor = backgroundColor
     )
 }
