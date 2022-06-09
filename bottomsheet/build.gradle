@@ -53,8 +53,7 @@ dependencies {
     // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
     implementation "androidx.compose.foundation:foundation:$compose_version"
     // Material Design
-    implementation "androidx.compose.material3:material3:1.0.0-alpha12"
-    implementation "androidx.compose.material3:material3-window-size-class:1.0.0-alpha12"
+    implementation "androidx.compose.material:material:1.1.1"
     // Integration with activities
     implementation 'androidx.activity:activity-compose:1.4.0'
     implementation "androidx.compose.compiler:compiler:$compose_version"

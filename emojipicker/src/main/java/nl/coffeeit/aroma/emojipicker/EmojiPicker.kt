@@ -1,4 +1,4 @@
-package nl.coffeeit.aroma.bottomsheet
+package nl.coffeeit.aroma.emojipicker
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
