@@ -107,9 +107,7 @@ if [ "$DEBUG" == "true" ]; then
 fi
 
 function validate_input() {
-    printf "$WORKFLOW"
-    printf "$ACCESS_TOKEN"
-    printf "$PROJECT_SLUG"
+    printf "workflow: $WORKFLOW, access_token: $ACCESS_TOKEN 0 project_slug: $PROJECT_SLUG}"
 
     if [ -z "$WORKFLOW" ] || [ -z "$ACCESS_TOKEN" ] || [ -z "$PROJECT_SLUG" ]; then
         printf "\e[31m ERROR: Missing arguments(s). All these args must be passed: --workflow,--slug,--access-token \e[0m\n"
