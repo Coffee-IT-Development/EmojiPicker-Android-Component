@@ -15,7 +15,7 @@ workflows:
       - file-downloader@1:
           inputs:
             - source: "$BITRISEIO_PUBRING_URL"
-            - destination: "/$BITRISE_GIT_TAG/pubring.kbx"
+            - destination: "/$BITRISE_GIT_BRANCH/pubring.kbx"
       - script@1:
           inputs:
             - content: |-
@@ -23,9 +23,9 @@ workflows:
                 echo "SONATYPE_NEXUS_PASSWORD=$SONATYPE_NEXUS_PASSWORD" >> gradle.properties
                 echo "signing.keyId=$GPG_KEY_ID" >> gradle.properties
                 echo "signing.password=$GPG_PASSPHRASE" >> gradle.properties
-                echo "signing.secretKeyRingFile=/$BITRISE_GIT_TAG/pubring.kbx" >> gradle.properties
-                ./gradlew $BITRISE_GIT_TAG:uploadArchives --no-daemon --no-parallel
-                ./gradlew $BITRISE_GIT_TAG:closeAndReleaseRepository
+                echo "signing.secretKeyRingFile=/$BITRISE_GIT_BRANCH/pubring.kbx" >> gradle.properties
+                ./gradlew $BITRISE_GIT_BRANCH:uploadArchives --no-daemon --no-parallel
+                ./gradlew $BITRISE_GIT_BRANCH:closeAndReleaseRepository
       - cache-push@2: {}
       - slack@3:
           inputs:
