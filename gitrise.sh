@@ -162,7 +162,7 @@ function process_env_vars() {
 }
 
 function generate_build_payload() {
-    printf "$BRANCH"
+    printf "This is branch: $BRANCH"
     local environments=$(process_env_vars "$ENV_STRING")   
     cat << EOF
 {
