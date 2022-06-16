@@ -14,7 +14,9 @@ workflows:
       - script@1:
           inputs:
             - content: |-
-                echo "$BITRISE_GIT_BRANCH=$BITRISE_GIT_BRANCH"
+                echo "BITRISE_GIT_BRANCH=$BITRISE_GIT_BRANCH"
+                export CURRENT_BRANCH="${BITRISE_GIT_BRANCH}"
+                echo "CURRENT_BRANCH=CURRENT_BRANCH"
       - cache-pull@2: {}
       - file-downloader@1:
           inputs:

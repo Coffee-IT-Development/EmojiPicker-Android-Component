@@ -117,6 +117,7 @@ function validate_input() {
     [[ -n "$TAG" ]] &&  ((count++))
     [[ -n "$COMMIT" ]] &&  ((count++))
     [[ -n "$BRANCH" ]] &&  ((count++))
+  printf "$BRANCH"
 
     if [[  $count -gt 1 ]]; then
         printf "\n\e[33m Warning: Too many building arguments passed. Only one of these is needed: --commit, --tag, --branch \e[0m\n"
