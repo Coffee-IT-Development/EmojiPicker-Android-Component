@@ -10,6 +10,10 @@ workflows:
     steps:
       - activate-ssh-key@4:
           run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+      - script@1:
+          inputs:
+            - content: |-
+                echo "Bitrise source dir: $BITRISE_SOURCE_DIR / $BITRISE_GIT_TAG"
       - git-clone@6.1: {}
       - cache-pull@2: {}
       - file-downloader@1:
@@ -19,7 +23,6 @@ workflows:
       - script@1:
           inputs:
             - content: |-
-                echo "Bitrise source dir: $BITRISE_SOURCE_DIR / $BITRISE_GIT_TAG"
                 echo "SONATYPE_NEXUS_USERNAME=$SONATYPE_NEXUS_USERNAME" >> gradle.properties
                 echo "SONATYPE_NEXUS_PASSWORD=$SONATYPE_NEXUS_PASSWORD" >> gradle.properties
                 echo "signing.keyId=$GPG_KEY_ID" >> gradle.properties
