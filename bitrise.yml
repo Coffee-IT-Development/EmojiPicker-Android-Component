@@ -15,7 +15,7 @@ workflows:
       - file-downloader@1:
           inputs:
             - source: "$BITRISEIO_PUBRING_URL"
-            - destination: "/$BITRISE_GIT_BRANCH/pubring.kbx"
+            - destination: "/pubring.kbx"
       - script@1:
           inputs:
             - content: |-
