@@ -22,12 +22,3 @@ build-tags:
   script:
     - chmod +x ./gitrise.sh
     - ./gitrise.sh -a $BITRISE_ACCESS_TOKEN -s $BITRISE_PROJ_SLUG -w release -b $CI_COMMIT_REF_NAME --stream
-
-build-bottomsheet:
-  image: cfmanteiga/alpine-bash-curl-jq
-  stage: build
-  only:
-    - bottomsheet
-  script:
-    - chmod +x ./gitrise.sh
-    - ./gitrise.sh -a $BITRISE_ACCESS_TOKEN -s $BITRISE_PROJ_SLUG -w release -b $CI_COMMIT_REF_NAME --stream
