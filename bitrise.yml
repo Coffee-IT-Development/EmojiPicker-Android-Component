@@ -11,11 +11,15 @@ workflows:
       - activate-ssh-key@4:
           run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
       - git-clone@6.1: {}
+      - script@1:
+          inputs:
+            - content: |-
+                echo "$BITRISE_GIT_BRANCH=$BITRISE_GIT_BRANCH"
       - cache-pull@2: {}
       - file-downloader@1:
           inputs:
             - source: "$BITRISEIO_PUBRING_URL"
-            - destination: "/pubring.kbx"
+            - destination: "/$BITRISE_GIT_BRANCH/pubring.kbx"
       - script@1:
           inputs:
             - content: |-
@@ -23,7 +27,7 @@ workflows:
                 echo "SONATYPE_NEXUS_PASSWORD=$SONATYPE_NEXUS_PASSWORD" >> gradle.properties
                 echo "signing.keyId=$GPG_KEY_ID" >> gradle.properties
                 echo "signing.password=$GPG_PASSPHRASE" >> gradle.properties
-                echo "signing.secretKeyRingFile=/pubring.kbx" >> gradle.properties
+                echo "signing.secretKeyRingFile=/$BITRISE_GIT_BRANCH/pubring.kbx" >> gradle.properties
                 ./gradlew $BITRISE_GIT_BRANCH:uploadArchives --no-daemon --no-parallel
                 ./gradlew $BITRISE_GIT_BRANCH:closeAndReleaseRepository
       - cache-push@2: {}
