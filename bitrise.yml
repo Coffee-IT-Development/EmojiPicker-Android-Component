@@ -13,7 +13,7 @@ workflows:
       - script@1:
           inputs:
             - content: |-
-                echo "Bitrise source dir: $BITRISE_SOURCE_DIR / $BITRISE_GIT_TAG"
+                echo "Bitrise source dir: $BITRISE_SOURCE_DIR/$BITRISE_GIT_TAG"
       - git-clone@6.1: {}
       - cache-pull@2: {}
       - file-downloader@1:
