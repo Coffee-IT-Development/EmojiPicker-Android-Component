@@ -181,7 +181,8 @@ EOF
 
 function trigger_build() {
     local response=""
-    if [ -z "${TESTING_ENABLED}" ]; then 
+    if [ -z "${TESTING_ENABLED}" ]; then
+        echo "This is tag: $TAG"
         local command="curl --silent -X POST https://api.bitrise.io/v0.1/apps/$PROJECT_SLUG/builds \
                 --data '$(generate_build_payload)' \
                 --header 'Accept: application/json' --header 'Authorization: $ACCESS_TOKEN'"
