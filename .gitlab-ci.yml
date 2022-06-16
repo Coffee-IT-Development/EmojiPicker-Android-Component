@@ -32,7 +32,7 @@ build-main:
     - chmod +x ./gitrise.sh
     - ./gitrise.sh -a $BITRISE_ACCESS_TOKEN -s $BITRISE_PROJ_SLUG -w release -b $CI_COMMIT_REF_NAME --stream
 
- build-develop:
+build-develop:
    image: cfmanteiga/alpine-bash-curl-jq
    stage: build
    only:
