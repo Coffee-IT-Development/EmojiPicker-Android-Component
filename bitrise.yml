@@ -25,7 +25,7 @@ workflows:
                 echo "signing.password=$GPG_PASSPHRASE" >> $BITRISE_GIT_TAG/gradle.properties
                 echo "signing.secretKeyRingFile=/$BITRISE_GIT_TAG/pubring.kbx" >> $BITRISE_GIT_TAG/gradle.properties
                 ./gradlew $BITRISE_GIT_TAG:uploadArchives --no-daemon --no-parallel
-                ./gradlew $BITRISE_GIT_TAG:closeAndReleaseRepository
+                ./gradlew closeAndReleaseRepository
       - cache-push@2: {}
       - slack@3:
           inputs:
