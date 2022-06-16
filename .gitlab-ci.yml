@@ -21,4 +21,4 @@ build-tags:
     - tags
   script:
     - chmod +x ./gitrise.sh
-    - ./gitrise.sh -a $BITRISE_ACCESS_TOKEN -s $BITRISE_PROJ_SLUG -w release -b $CI_COMMIT_REF_NAME --stream
+    - ./gitrise.sh -a $BITRISE_ACCESS_TOKEN -s $BITRISE_PROJ_SLUG -w release -t $CI_COMMIT_REF_NAME --stream
