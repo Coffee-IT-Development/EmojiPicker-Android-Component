@@ -10,11 +10,9 @@ workflows:
     steps:
       - activate-ssh-key@4:
           run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-      - script@1:
+      - git-clone@6.1:
           inputs:
-            - content: |-
-                echo "Bitrise source dir: $BITRISE_SOURCE_DIR/$BITRISE_GIT_TAG"
-      - git-clone@6.1: {}
+            - clone_into_dir: $BITRISE_SOURCE_DIR/$BITRISE_GIT_TAG
       - cache-pull@2: {}
       - file-downloader@1:
           inputs:
@@ -28,8 +26,6 @@ workflows:
                 echo "signing.keyId=$GPG_KEY_ID" >> gradle.properties
                 echo "signing.password=$GPG_PASSPHRASE" >> gradle.properties
                 echo "signing.secretKeyRingFile=/$BITRISE_GIT_TAG/secring.gpg" >> gradle.properties
-                ./gradlew uploadArchives --no-daemon --no-parallel
-                ./gradlew closeAndReleaseRepository
       - cache-push@2: {}
       - slack@3:
           inputs:
