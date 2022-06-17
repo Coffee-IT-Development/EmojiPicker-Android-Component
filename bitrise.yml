@@ -21,13 +21,20 @@ workflows:
             - content: |-
                 echo "SONATYPE_NEXUS_USERNAME=$SONATYPE_NEXUS_USERNAME" >> $BITRISE_GIT_BRANCH/gradle.properties
                 echo "SONATYPE_NEXUS_PASSWORD=$SONATYPE_NEXUS_PASSWORD" >> $BITRISE_GIT_BRANCH/gradle.properties
+
                 echo "mavenCentralUsername=$SONATYPE_NEXUS_USERNAME" >> $BITRISE_GIT_BRANCH/gradle.properties
                 echo "mavenCentralPassword=$SONATYPE_NEXUS_PASSWORD" >> $BITRISE_GIT_BRANCH/gradle.properties
+
+                ./gradlew $BITRISE_GIT_BRANCH:assembleDebug -PmavenCentralUsername=$SONATYPE_NEXUS_USERNAME
+                ./gradlew $BITRISE_GIT_BRANCH:assembleDebug -)mavenCentralPassword=$SONATYPE_NEXUS_PASSWORD
+
                 echo "ORG_GRADLE_PROJECT_mavenCentralUsername=$SONATYPE_NEXUS_USERNAME" >> $BITRISE_GIT_BRANCH/gradle.properties
                 echo "ORG_GRADLE_PROJECT_mavenCentralPassword=$SONATYPE_NEXUS_PASSWORD" >> $BITRISE_GIT_BRANCH/gradle.properties
+
                 echo "signing.keyId=$GPG_KEY_ID" >> $BITRISE_GIT_BRANCH/gradle.properties
                 echo "signing.password=$GPG_PASSPHRASE" >> $BITRISE_GIT_BRANCH/gradle.properties
                 echo "signing.secretKeyRingFile=/$BITRISE_GIT_BRANCH/pubring.kbx" >> $BITRISE_GIT_BRANCH/gradle.properties
+
                 ./gradlew $BITRISE_GIT_BRANCH:publish --no-daemon --no-parallel
                 ./gradlew $BITRISE_GIT_BRANCH:closeAndReleaseRepository
       - cache-push@2: {}
