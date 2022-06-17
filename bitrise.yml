@@ -19,16 +19,12 @@ workflows:
       - script@1:
           inputs:
             - content: |-
-                echo "SONATYPE_NEXUS_USERNAME=$SONATYPE_NEXUS_USERNAME"
-                echo "SONATYPE_NEXUS_PASSWORD=$SONATYPE_NEXUS_PASSWORD"
-                echo "mavenCentralUsername=$SONATYPE_NEXUS_USERNAME"
-                echo "mavenCentralPassword=$SONATYPE_NEXUS_PASSWORD"
-                echo "signing.keyId=$GPG_KEY_ID"
-                echo "signing.password=$GPG_PASSPHRASE"
                 echo "SONATYPE_NEXUS_USERNAME=$SONATYPE_NEXUS_USERNAME" >> $BITRISE_GIT_BRANCH/gradle.properties
                 echo "SONATYPE_NEXUS_PASSWORD=$SONATYPE_NEXUS_PASSWORD" >> $BITRISE_GIT_BRANCH/gradle.properties
                 echo "mavenCentralUsername=$SONATYPE_NEXUS_USERNAME" >> $BITRISE_GIT_BRANCH/gradle.properties
                 echo "mavenCentralPassword=$SONATYPE_NEXUS_PASSWORD" >> $BITRISE_GIT_BRANCH/gradle.properties
+                echo "ORG_GRADLE_PROJECT_mavenCentralUsername=$SONATYPE_NEXUS_USERNAME" >> $BITRISE_GIT_BRANCH/gradle.properties
+                echo "ORG_GRADLE_PROJECT_mavenCentralPassword=$SONATYPE_NEXUS_PASSWORD" >> $BITRISE_GIT_BRANCH/gradle.properties
                 echo "signing.keyId=$GPG_KEY_ID" >> $BITRISE_GIT_BRANCH/gradle.properties
                 echo "signing.password=$GPG_PASSPHRASE" >> $BITRISE_GIT_BRANCH/gradle.properties
                 echo "signing.secretKeyRingFile=/$BITRISE_GIT_BRANCH/pubring.kbx" >> $BITRISE_GIT_BRANCH/gradle.properties
