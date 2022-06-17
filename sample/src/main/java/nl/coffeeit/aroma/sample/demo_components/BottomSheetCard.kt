@@ -20,7 +20,8 @@ fun BottomSheetCard(
     state: ModalBottomSheetState,
     updateRoundedCornerValue: (Int) -> Unit,
     updateColorValue: (Color) -> Unit,
-    updateCloseButtonChecked: (Boolean) -> Unit
+    updateCloseButtonChecked: (Boolean) -> Unit,
+    updateIsRaised: (Boolean) -> Unit
 ) {
     Card(
         elevation = 4.dp
@@ -28,13 +29,13 @@ fun BottomSheetCard(
         Column(
             modifier = Modifier
                 .padding(16.dp)
-                .fillMaxSize()
         ) {
 
-            var cornerRadius by remember { mutableStateOf("0")}
+            var cornerRadius by remember { mutableStateOf("")}
             var colorValue by remember { mutableStateOf("")}
             var colorValueError by remember { mutableStateOf(false) }
             var hasCloseButton by remember { mutableStateOf(false) }
+            var isRaised by remember { mutableStateOf(false) }
 
             Row(
                 modifier = Modifier.wrapContentHeight()
@@ -47,12 +48,12 @@ fun BottomSheetCard(
                             updateRoundedCornerValue(it.toInt())
                         }
                     },
-                    label = { Text("Rounded corner radius") },
+                    label = { Text("Corner radius") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     singleLine = true,
                     maxLines = 1,
                     modifier = Modifier
-                        .fillMaxWidth(0.50f)
+                        .fillMaxWidth(0.40f)
                         .wrapContentHeight()
                 )
 
@@ -68,6 +69,17 @@ fun BottomSheetCard(
                     } )
                 }
 
+                Spacer(modifier = Modifier.width(10.dp))
+
+                Column(
+                    modifier = Modifier.wrapContentHeight()
+                ) {
+                    Text(text = "Raised?")
+                    Checkbox(checked = isRaised, onCheckedChange = {
+                        isRaised = it
+                        updateIsRaised(it)
+                    })
+                }
             }
 
 
@@ -93,7 +105,7 @@ fun BottomSheetCard(
                 },
                 maxLines = 1,
                 modifier = Modifier
-                    .fillMaxWidth(0.50f)
+                    .fillMaxWidth(0.40f)
                     .wrapContentHeight()
             )
 

@@ -41,6 +41,7 @@ fun ComponentsDemoScreen(
     var roundedCornerValue by remember { mutableStateOf(0) }
     var backgroundColor by remember { mutableStateOf(Color(0x60000000)) }
     var hasCloseButton by remember { mutableStateOf(false) }
+    var isRaised by remember { mutableStateOf(false) }
 
     BottomSheetWithContent(
         { state, scope ->
@@ -65,7 +66,8 @@ fun ComponentsDemoScreen(
                     BottomSheetCard(scope = scope, state = state,
                         updateRoundedCornerValue = { roundedCornerValue = it },
                         updateColorValue = { backgroundColor = it },
-                        updateCloseButtonChecked = { hasCloseButton = it })
+                        updateCloseButtonChecked = { hasCloseButton = it },
+                        updateIsRaised = { isRaised = it} )
 
                     Spacer(modifier = Modifier.height(32.dp))
 
@@ -97,7 +99,8 @@ fun ComponentsDemoScreen(
         },
         cornerShape = RoundedCornerShape(roundedCornerValue.dp),
         hasCloseButton = hasCloseButton,
-        scrimColor = backgroundColor
+        scrimColor = backgroundColor,
+        raised = isRaised
     )
 }
 
