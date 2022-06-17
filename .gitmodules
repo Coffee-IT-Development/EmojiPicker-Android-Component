@@ -1,6 +1,6 @@
-[submodule "emojipicker"]
-	path = emojipicker
-	url = git@gitlab.com:CoffeeIT/aroma/android/aroma-android-emojipicker.git
 [submodule "bottomsheet"]
 	path = bottomsheet
-	url = git@gitlab.com:CoffeeIT/aroma/android/aroma-android-bottomsheet.git
+	url = https://gitlab.com/CoffeeIT/aroma/android/aroma-android-bottomsheet.git
+[submodule "emojipicker"]
+	path = emojipicker
+	url = https://gitlab.com/CoffeeIT/aroma/android/aroma-android-emojipicker.git
