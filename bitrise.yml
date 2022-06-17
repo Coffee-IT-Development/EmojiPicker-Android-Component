@@ -15,15 +15,15 @@ workflows:
       - file-downloader@1:
           inputs:
             - source: "$BITRISEIO_PUBRING_URL"
-            - destination: "/$BITRISE_GIT_BRANCH/pubring.kbx"
+            - destination: "/pubring.kbx"
       - script@1:
           inputs:
             - content: |-
                 echo "mavenCentralUsername=$SONATYPE_NEXUS_USERNAME" >> gradle.properties
                 echo "mavenCentralPassword=$SONATYPE_NEXUS_PASSWORD" >> gradle.properties
-                echo "signing.keyId=$GPG_KEY_ID" >> $BITRISE_GIT_BRANCH/gradle.properties
-                echo "signing.password=$GPG_PASSPHRASE" >> $BITRISE_GIT_BRANCH/gradle.properties
-                echo "signing.secretKeyRingFile=/$BITRISE_GIT_BRANCH/pubring.kbx" >> $BITRISE_GIT_BRANCH/gradle.properties
+                echo "signing.keyId=$GPG_KEY_ID" >> gradle.properties
+                echo "signing.password=$GPG_PASSPHRASE" >> gradle.properties
+                echo "signing.secretKeyRingFile=/pubring.kbx" >> gradle.properties
                 ./gradlew $BITRISE_GIT_BRANCH:publish --no-daemon --no-parallel
                 ./gradlew $BITRISE_GIT_BRANCH:closeAndReleaseRepository
       - cache-push@2: {}
