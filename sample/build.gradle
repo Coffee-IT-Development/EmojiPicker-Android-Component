@@ -39,6 +39,9 @@ android {
 
 dependencies {
 
+    implementation project(path: ':emojipicker')
+    implementation project(path: ':bottomsheet')
+
     // Compose
     implementation "androidx.compose.compiler:compiler:$compose_version"
     implementation "androidx.compose.ui:ui:$compose_version"
@@ -54,6 +57,4 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation project(':emojipicker')
-    implementation project(':bottomsheet')
 }

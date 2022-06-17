@@ -6,7 +6,5 @@ pluginManagement {
     }
 }
 
-rootProject.name = "Sample"
-include ':sample'
-include ':emojipicker'
-include ':bottomsheet'
+rootProject.name = "Aroma Android Sample"
+include ':sample', ':emojipicker', ':bottomsheet'
