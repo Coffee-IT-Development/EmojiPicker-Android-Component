@@ -16,6 +16,7 @@ workflows:
       - script@1:
           inputs:
             - content: |-
+                envman add --key MAVEN_URL_WITH_ARTIFACT_ID --value "$MAVEN_URL$BITRISE_GIT_TAG"
                 echo "mavenCentralUsername=$SONATYPE_NEXUS_USERNAME" >> gradle.properties
                 echo "mavenCentralPassword=$SONATYPE_NEXUS_PASSWORD" >> gradle.properties
                 echo "signing.keyId=$GPG_KEY_ID" >> gradle.properties
@@ -35,7 +36,7 @@ workflows:
             - footer: ''
             - pretext: "*Deployment succeeded!*"
             - buttons: |
-                View on Maven|${MAVEN_URL}
+                View on Maven|${MAVEN_URL_WITH_ARTIFACT_ID}
                 View Build|${BITRISE_BUILD_URL}
             - webhook_url: "$SLACK_WEBHOOK_URL"
           is_always_run: false
