@@ -2,9 +2,6 @@
 format_version: '8'
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 project_type: android
-trigger_map:
-  - push_branch: main
-    workflow: release
 workflows:
   release:
     steps:
@@ -15,22 +12,22 @@ workflows:
       - file-downloader@1:
           inputs:
             - source: "$BITRISEIO_PUBRING_URL"
-            - destination: "/$BITRISE_GIT_BRANCH/pubring.kbx"
+            - destination: "/pubring.kbx"
       - script@1:
           inputs:
             - content: |-
                 echo "mavenCentralUsername=$SONATYPE_NEXUS_USERNAME" >> gradle.properties
                 echo "mavenCentralPassword=$SONATYPE_NEXUS_PASSWORD" >> gradle.properties
-                echo "signing.keyId=$GPG_KEY_ID" >> $BITRISE_GIT_BRANCH/gradle.properties
-                echo "signing.password=$GPG_PASSPHRASE" >> $BITRISE_GIT_BRANCH/gradle.properties
-                echo "signing.secretKeyRingFile=/$BITRISE_GIT_BRANCH/pubring.kbx" >> $BITRISE_GIT_BRANCH/gradle.properties
-                ./gradlew $BITRISE_GIT_BRANCH:publish --no-daemon --no-parallel
-                ./gradlew $BITRISE_GIT_BRANCH:closeAndReleaseRepository
+                echo "signing.keyId=$GPG_KEY_ID" >> gradle.properties
+                echo "signing.password=$GPG_PASSPHRASE" >> gradle.properties
+                echo "signing.secretKeyRingFile=/pubring.kbx" >> gradle.properties
+                ./gradlew $BITRISE_GIT_TAG:publish --no-daemon --no-parallel
+                ./gradlew closeAndReleaseRepository
       - cache-push@2: {}
       - slack@3:
           inputs:
             - channel: ''
-            - text: 'Android $APP_NAME $BITRISE_GIT_BRANCH build deployed to Maven :rocket:'
+            - text: 'Android $APP_NAME $BITRISE_GIT_TAG build deployed to Maven :rocket:'
             - emoji: ''
             - thumb_url: "$ICON_URL"
             - icon_url: ''
@@ -46,7 +43,7 @@ workflows:
       - slack@3:
           inputs:
             - channel: ''
-            - text: 'Android $APP_NAME $BITRISE_GIT_BRANCH deployment failed :rocket-explosion:'
+            - text: 'Android $APP_NAME $BITRISE_GIT_TAG deployment failed :rocket-explosion:'
             - emoji: ''
             - thumb_url: "$ICON_URL"
             - icon_url: ''
