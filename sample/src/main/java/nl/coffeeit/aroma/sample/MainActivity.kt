@@ -2,6 +2,7 @@
 
 package nl.coffeeit.aroma.sample
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -37,6 +38,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ComponentsDemoScreen(
     actionActiveDev: () -> Unit

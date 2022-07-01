@@ -80,7 +80,7 @@ fun BottomSheetCard(
                     singleLine = true,
                     maxLines = 1,
                     modifier = Modifier
-                        .fillMaxWidth(0.40f)
+                        .fillMaxWidth(0.80f)
                         .wrapContentHeight())
             }
 
@@ -127,7 +127,7 @@ fun BottomSheetCard(
                     singleLine = true,
                     maxLines = 1,
                     modifier = Modifier
-                        .fillMaxWidth(0.40f)
+                        .fillMaxWidth(0.80f)
                         .wrapContentHeight())
             }
 
