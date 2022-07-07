@@ -17,6 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import nl.coffeeit.aroma.emojipicker.R
 import nl.coffeeit.aroma.emojipicker.databinding.FragmentEmojiPickerBinding
 import nl.coffeeit.aroma.emojipicker.di.ViewModelModule
+import nl.coffeeit.aroma.emojipicker.domain.model.EmojiCategory
 import nl.coffeeit.aroma.emojipicker.domain.model.EmojiItem
 import nl.coffeeit.aroma.emojipicker.domain.model.ListItem
 import nl.coffeeit.aroma.emojipicker.domain.model.Title
@@ -45,7 +46,7 @@ class EmojiBottomSheet(
             val endPosition = (gridLayoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
             val item = list?.getOrNull(endPosition)
             if (item is Title && highlightEnabled) {
-                highlightIcon(item.title)
+                highlightIcon(item.category)
             }
         }
     }
@@ -102,57 +103,59 @@ class EmojiBottomSheet(
             val titles = list.filterIsInstance<Title>()
             this.list = list
             binding.actionSmileys.setOnClickListener {
-                scrollTo(titles, list, "Smileys & People")
+                scrollTo(titles, list, EmojiCategory.SMILEYS_AND_PEOPLE)
             }
             binding.actionNature.setOnClickListener {
-                scrollTo(titles, list, "Animals & Nature")
+                scrollTo(titles, list, EmojiCategory.ANIMALS_AND_NATURE)
             }
             binding.actionFood.setOnClickListener {
-                scrollTo(titles, list, "Food & Drink")
+                scrollTo(titles, list, EmojiCategory.FOOD_AND_DRINK)
             }
             binding.actionActivity.setOnClickListener {
-                scrollTo(titles, list, "Activity")
+                scrollTo(titles, list, EmojiCategory.ACTIVITY)
             }
             binding.actionTravel.setOnClickListener {
-                scrollTo(titles, list, "Travel & Places")
+                scrollTo(titles, list, EmojiCategory.TRAVEL_AND_PLACES)
             }
             binding.actionObjects.setOnClickListener {
-                scrollTo(titles, list, "Objects")
+                scrollTo(titles, list, EmojiCategory.OBJECTS)
             }
             binding.actionSymbols.setOnClickListener {
-                scrollTo(titles, list, "Symbols")
+                scrollTo(titles, list, EmojiCategory.SYMBOLS)
             }
             binding.actionFlags.setOnClickListener {
-                scrollTo(titles, list, "Flags")
+                scrollTo(titles, list, EmojiCategory.FLAGS)
             }
             adapter.submitList(list)
         }
         return bottomSheetDialog
     }
 
-    private fun scrollTo(titles: List<Title>, list: List<ListItem>, title: String) {
+    private fun scrollTo(titles: List<Title>, list: List<ListItem>, category: EmojiCategory) {
         val input = binding.itemInputSearch.inputSearch
         if (input.text.isNotBlank()) input.setText("")
-        val item: ListItem? = titles.find { it.title == title }
+        val item: ListItem? = titles.find { it.category == category }
         val index = list.indexOf(item)
         gridLayoutManager?.scrollToPositionWithOffset(index, 0)
-        highlightIcon(title)
+        highlightIcon(category)
     }
 
-    private fun highlightIcon(text: String) {
-        val view = when (text) {
-            "Smileys & People" -> binding.actionSmileys
-            "Animals & Nature" -> binding.actionNature
-            "Food & Drink" -> binding.actionFood
-            "Activity" -> binding.actionActivity
-            "Travel & Places" -> binding.actionTravel
-            "Objects" -> binding.actionObjects
-            "Symbols" -> binding.actionSymbols
-            "Flags" -> binding.actionFlags
-            else -> null
+    private fun highlightIcon(category: EmojiCategory) {
+        val view = when (category) {
+            EmojiCategory.SMILEYS_AND_PEOPLE -> binding.actionSmileys
+            EmojiCategory.ANIMALS_AND_NATURE -> binding.actionNature
+            EmojiCategory.FOOD_AND_DRINK -> binding.actionFood
+            EmojiCategory.ACTIVITY -> binding.actionActivity
+            EmojiCategory.TRAVEL_AND_PLACES -> binding.actionTravel
+            EmojiCategory.OBJECTS -> binding.actionObjects
+            EmojiCategory.SYMBOLS -> binding.actionSymbols
+            EmojiCategory.FLAGS -> binding.actionFlags
         }
         removeAllHighlights()
-        view?.setColorFilter(ContextCompat.getColor(requireContext(), R.color.accent), android.graphics.PorterDuff.Mode.SRC_IN)
+        view.setColorFilter(
+            ContextCompat.getColor(requireContext(), R.color.accent),
+            android.graphics.PorterDuff.Mode.SRC_IN
+        )
     }
 
     private fun removeAllHighlights() {

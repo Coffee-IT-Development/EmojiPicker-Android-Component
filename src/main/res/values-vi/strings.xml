@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <string name="emojipicker_recents">Gần đây</string>
+  <string name="emojipicker_smileys_and_people">Mặt cười &amp; Người</string>
+  <string name="emojipicker_animals_and_nature">Động vật &amp; Tự nhiên</string>
+  <string name="emojipicker_food_and_drink">Đồ ăn &amp; Đồ uống</string>
+  <string name="emojipicker_activity">Hoạt động</string>
+  <string name="emojipicker_travel_and_places">Du lịch &amp; Địa điểm</string>
+  <string name="emojipicker_objects">Đồ vật</string>
+  <string name="emojipicker_symbols">Ký hiệu</string>
+  <string name="emojipicker_flags">Cờ</string>
+  <string name="emojipicker_emoji">Biểu tượng</string>
+  <string name="emojipicker_search">Tìm kiếm</string>
+</resources>

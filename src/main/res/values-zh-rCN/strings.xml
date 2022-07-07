@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <string name="emojipicker_recents">最近使用</string>
+  <string name="emojipicker_smileys_and_people">表情符号与人物</string>
+  <string name="emojipicker_animals_and_nature">动物与自然</string>
+  <string name="emojipicker_food_and_drink">食物与饮料</string>
+  <string name="emojipicker_activity">活动</string>
+  <string name="emojipicker_travel_and_places">旅行与地点</string>
+  <string name="emojipicker_objects">物体</string>
+  <string name="emojipicker_symbols">符号</string>
+  <string name="emojipicker_flags">旗帜</string>
+  <string name="emojipicker_emoji">表情符号</string>
+  <string name="emojipicker_search">搜索</string>
+</resources>

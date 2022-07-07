@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <string name="emojipicker_recents">Äskeiset</string>
+  <string name="emojipicker_smileys_and_people">Hymiöt ja ihmiset</string>
+  <string name="emojipicker_animals_and_nature">Eläimet ja luonto</string>
+  <string name="emojipicker_food_and_drink">Ruoka ja juoma</string>
+  <string name="emojipicker_activity">Toiminta</string>
+  <string name="emojipicker_travel_and_places">Matkailu ja paikat</string>
+  <string name="emojipicker_objects">Esineet</string>
+  <string name="emojipicker_symbols">Symbolit</string>
+  <string name="emojipicker_flags">Liput</string>
+  <string name="emojipicker_emoji">Emoji</string>
+  <string name="emojipicker_search">Etsi</string>
+</resources>

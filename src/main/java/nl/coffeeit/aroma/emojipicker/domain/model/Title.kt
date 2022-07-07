@@ -1,6 +1,5 @@
 package nl.coffeeit.aroma.emojipicker.domain.model
 
 data class Title(
-    override val id: String,
-    val title: String
+    val category: EmojiCategory
 ) : ListItem(Type.TITLE)
