@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="emoji_columns">6</integer>
+    <dimen name="emoji_spacing_horizontal">16dp</dimen>
 </resources>

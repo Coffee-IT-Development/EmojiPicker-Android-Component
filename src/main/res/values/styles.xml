@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BottomSheetDialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="MyDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_down</item>
+    </style>
+</resources>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_bottom_sheet"
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+        <include
+            android:id="@+id/item_input_search"
+            layout="@layout/item_input_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintBottom_toTopOf="@id/holder_icons"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/holder_icons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/divider"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_input_search">
+
+            <ImageView
+                android:id="@+id/action_recent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="26dp"
+                android:paddingBottom="18dp"
+                android:src="@drawable/ic_recent"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/action_smileys"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="26dp"
+                android:paddingBottom="18dp"
+                android:src="@drawable/ic_smileys" />
+
+            <ImageView
+                android:id="@+id/action_nature"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="26dp"
+                android:paddingBottom="18dp"
+                android:src="@drawable/ic_nature" />
+
+            <ImageView
+                android:id="@+id/action_food"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="26dp"
+                android:paddingBottom="18dp"
+                android:src="@drawable/ic_food" />
+
+            <ImageView
+                android:id="@+id/action_activity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="26dp"
+                android:paddingBottom="18dp"
+                android:src="@drawable/ic_activity" />
+
+            <ImageView
+                android:id="@+id/action_travel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="26dp"
+                android:paddingBottom="18dp"
+                android:src="@drawable/ic_travel" />
+
+            <ImageView
+                android:id="@+id/action_objects"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="26dp"
+                android:paddingBottom="18dp"
+                android:src="@drawable/ic_objects" />
+
+            <ImageView
+                android:id="@+id/action_symbols"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="26dp"
+                android:paddingBottom="18dp"
+                android:src="@drawable/ic_symbols" />
+
+            <ImageView
+                android:id="@+id/action_flags"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="26dp"
+                android:paddingBottom="18dp"
+                android:src="@drawable/ic_flags" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/dividerColor"
+            app:layout_constraintTop_toBottomOf="@id/holder_icons" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_emojis"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:listitem="@layout/item_extra_title"
+            tools:spanCount="@integer/emoji_columns" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

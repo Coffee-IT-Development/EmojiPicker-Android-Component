@@ -4,9 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class EmojiItem(
     @SerializedName("emoji") val emoji : String,
-    @SerializedName("skin_tone_support") val skin_tone_support : Boolean,
     @SerializedName("name") val name : String,
-    @SerializedName("slug") val slug : String,
-    @SerializedName("unicode_version") val unicode_version : Double,
-    @SerializedName("emoji_version") val emoji_version : Double
-)
+    @SerializedName("slug") val slug : String
+) {
+    val unicode get() = String.format("u+%04x", emoji.codePointAt(0)).uppercase()
+}
