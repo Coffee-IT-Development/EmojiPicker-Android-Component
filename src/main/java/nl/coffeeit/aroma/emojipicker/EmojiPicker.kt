@@ -7,6 +7,3 @@ import androidx.compose.runtime.Composable
 fun EmojiPicker() {
     Text(text = "Hello Text compose")
 }
-
-
-// Test to trigger Sonar
