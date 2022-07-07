@@ -2,6 +2,7 @@
 
 package nl.coffeeit.aroma.sample
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -19,6 +20,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
+import nl.coffeeit.aroma.DEFAULT_CORNER_RADIUS
+import nl.coffeeit.aroma.DEFAULT_SCRIM_COLOR
+import nl.coffeeit.aroma.bottomsheet.Accessory
 import nl.coffeeit.aroma.bottomsheet.BottomSheetWithContent
 import nl.coffeeit.aroma.sample.demo_components.*
 
@@ -34,13 +38,16 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ComponentsDemoScreen(
     actionActiveDev: () -> Unit
 ) {
-    var roundedCornerValue by remember { mutableStateOf(0) }
-    var backgroundColor by remember { mutableStateOf(Color(0x60000000)) }
-    var hasCloseButton by remember { mutableStateOf(false) }
+    var roundedCornerValue by remember { mutableStateOf(DEFAULT_CORNER_RADIUS) }
+    var backgroundColor by remember { mutableStateOf(Color(DEFAULT_SCRIM_COLOR)) }
+    var width by remember { mutableStateOf(0f) }
+    var bottomPadding by remember { mutableStateOf(0f) }
+    var accessory by remember { mutableStateOf(Accessory.NONE) }
 
     BottomSheetWithContent(
         { state, scope ->
@@ -65,7 +72,9 @@ fun ComponentsDemoScreen(
                     BottomSheetCard(scope = scope, state = state,
                         updateRoundedCornerValue = { roundedCornerValue = it },
                         updateColorValue = { backgroundColor = it },
-                        updateCloseButtonChecked = { hasCloseButton = it })
+                        updateWidth = { width = it },
+                        updateBottomPadding = { bottomPadding = it },
+                        updateAccessory = { accessory = it })
 
                     Spacer(modifier = Modifier.height(32.dp))
 
@@ -96,8 +105,10 @@ fun ComponentsDemoScreen(
             }
         },
         cornerShape = RoundedCornerShape(roundedCornerValue.dp),
-        hasCloseButton = hasCloseButton,
-        scrimColor = backgroundColor
+        scrimColor = backgroundColor,
+        width = width,
+        bottomPadding = bottomPadding,
+        accessory = accessory
     )
 }
 
