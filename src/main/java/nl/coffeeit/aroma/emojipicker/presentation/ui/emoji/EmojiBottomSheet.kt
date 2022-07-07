@@ -4,6 +4,8 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +27,7 @@ import nl.coffeeit.aroma.emojipicker.presentation.adapter.emoji.EmojiAdapter
 import nl.coffeeit.aroma.emojipicker.presentation.adapter.emoji.EmojiItemClickListener
 
 private const val BOTTOM_SHEET_HEIGHT_PERCENTAGE = 0.8
+private const val SCROLL_DELAY_AFTER_CLEARING_SEARCH = 50L
 
 class EmojiBottomSheet(
     private val onAction: (emojiItem: EmojiItem) -> Unit
@@ -34,6 +37,7 @@ class EmojiBottomSheet(
 
     private val adapter = EmojiAdapter(this)
     private var addedFirstEmoji = false
+    private var category: EmojiCategory? = null
     private var gridLayoutManager: GridLayoutManager? = null
     private var highlightEnabled = true
     private var list: List<ListItem>? = null
@@ -101,33 +105,40 @@ class EmojiBottomSheet(
             val titles = list.filterIsInstance<Title>()
             this.list = list
             binding.actionRecent.setOnClickListener {
-                scrollTo(titles, list, EmojiCategory.RECENT)
+                setCategoryAndClearQuery(EmojiCategory.RECENT)
             }
             binding.actionSmileys.setOnClickListener {
-                scrollTo(titles, list, EmojiCategory.SMILEYS_AND_PEOPLE)
+                setCategoryAndClearQuery(EmojiCategory.SMILEYS_AND_PEOPLE)
             }
             binding.actionNature.setOnClickListener {
-                scrollTo(titles, list, EmojiCategory.ANIMALS_AND_NATURE)
+                setCategoryAndClearQuery(EmojiCategory.ANIMALS_AND_NATURE)
             }
             binding.actionFood.setOnClickListener {
-                scrollTo(titles, list, EmojiCategory.FOOD_AND_DRINK)
+                setCategoryAndClearQuery(EmojiCategory.FOOD_AND_DRINK)
             }
             binding.actionActivity.setOnClickListener {
-                scrollTo(titles, list, EmojiCategory.ACTIVITY)
+                setCategoryAndClearQuery(EmojiCategory.ACTIVITY)
             }
             binding.actionTravel.setOnClickListener {
-                scrollTo(titles, list, EmojiCategory.TRAVEL_AND_PLACES)
+                setCategoryAndClearQuery(EmojiCategory.TRAVEL_AND_PLACES)
             }
             binding.actionObjects.setOnClickListener {
-                scrollTo(titles, list, EmojiCategory.OBJECTS)
+                setCategoryAndClearQuery(EmojiCategory.OBJECTS)
             }
             binding.actionSymbols.setOnClickListener {
-                scrollTo(titles, list, EmojiCategory.SYMBOLS)
+                setCategoryAndClearQuery(EmojiCategory.SYMBOLS)
             }
             binding.actionFlags.setOnClickListener {
-                scrollTo(titles, list, EmojiCategory.FLAGS)
+                setCategoryAndClearQuery(EmojiCategory.FLAGS)
             }
             adapter.submitList(list)
+            category?.let {
+                scrollTo(titles, list, it)
+            } ?: run {
+                if (binding.itemInputSearch.inputSearch.text?.isBlank() == true) {
+                    scrollTo(titles, list, EmojiCategory.RECENT)
+                }
+            }
         }
 
         viewModel.addedFirstEmoji.observe(this) {
@@ -136,32 +147,45 @@ class EmojiBottomSheet(
         }
     }
 
+    private fun setCategoryAndClearQuery(category: EmojiCategory) {
+        viewModel.clearQuery()
+        this.category = category
+    }
+
     private fun setListeners(bottomSheetDialog: Dialog) {
         val parentLayout = binding.root.parent as View
         bottomSheetDialog.setOnShowListener {
             setupFullHeight(parentLayout)
         }
 
-        binding.itemInputSearch.inputSearch.doAfterTextChanged {
-            viewModel.search(it.toString())
-            highlightEnabled = it?.isBlank() == true
-            if (it?.isNotBlank() == true) {
+        binding.itemInputSearch.inputSearch.doAfterTextChanged { editable ->
+            viewModel.search(editable.toString())
+            highlightEnabled = editable?.isBlank() == true
+            if (editable?.isNotBlank() == true) {
                 removeAllHighlights()
             }
-            if (it?.isEmpty() == true) {
-                binding.actionRecent.setColorFilter(ContextCompat.getColor(requireContext(), R.color.accent), android.graphics.PorterDuff.Mode.SRC_IN)
+            if (editable?.isEmpty() == true) {
+                context?.let {
+                    binding.actionRecent.setColorFilter(
+                        ContextCompat.getColor(it, R.color.accent), android.graphics.PorterDuff.Mode.SRC_IN)
+                }
             }
         }
-        binding.actionRecent.setColorFilter(ContextCompat.getColor(requireContext(), R.color.accent), android.graphics.PorterDuff.Mode.SRC_IN)
+        context?.let {
+            binding.actionRecent.setColorFilter(ContextCompat.getColor(it, R.color.accent), android.graphics.PorterDuff.Mode.SRC_IN)
+        }
     }
 
     private fun scrollTo(titles: List<Title>, list: List<ListItem>, category: EmojiCategory) {
         val input = binding.itemInputSearch.inputSearch
         if (input.text.isNotBlank()) input.setText("")
-        val item: ListItem? = titles.find { it.category == category }
-        val index = list.indexOf(item)
-        gridLayoutManager?.scrollToPositionWithOffset(index, 0)
-        highlightIcon(category)
+        Handler(Looper.getMainLooper()).postDelayed({
+            val item: ListItem? = titles.find { it.category == category }
+            val index = list.indexOf(item)
+            gridLayoutManager?.scrollToPositionWithOffset(index, 0)
+            highlightIcon(category)
+            this.category = null
+        }, SCROLL_DELAY_AFTER_CLEARING_SEARCH)
     }
 
     private fun highlightIcon(category: EmojiCategory) {
@@ -177,10 +201,12 @@ class EmojiBottomSheet(
             EmojiCategory.FLAGS -> binding.actionFlags
         }
         removeAllHighlights()
-        view.setColorFilter(
-            ContextCompat.getColor(requireContext(), R.color.accent),
-            android.graphics.PorterDuff.Mode.SRC_IN
-        )
+        context?.let {
+            view.setColorFilter(
+                ContextCompat.getColor(it, R.color.accent),
+                android.graphics.PorterDuff.Mode.SRC_IN
+            )
+        }
     }
 
     private fun removeAllHighlights() {

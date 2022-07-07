@@ -74,13 +74,14 @@ class EmojiViewModel(
 
     fun search(query: String) = _query.postValue(query)
 
+    fun clearQuery() = _query.postValue("")
+
     fun recentEmojisIsEmpty() = sharedPreferencesHelper.getRecentEmojis().isEmpty()
 
     fun addToRecents(emojiItem: EmojiItem) {
         if (recentEmojisIsEmpty()) {
              addedFirstEmoji.postValue(true)
         }
-
         sharedPreferencesHelper.addRecentEmoji(emojiItem)
         search(_query.value ?: "")
     }
