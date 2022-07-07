@@ -10,7 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun EmojiPickerCard() {
+fun EmojiPickerCard(
+    action: () -> Unit
+) {
     Card(
         elevation = 4.dp
     ) {
@@ -18,7 +20,7 @@ fun EmojiPickerCard() {
             .fillMaxWidth()
             .padding(horizontal = 12.dp),
             onClick = {
-
+                action()
             }) {
             Text(text = "Emoji Picker")
         }
