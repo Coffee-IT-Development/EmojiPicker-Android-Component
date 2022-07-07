@@ -29,26 +29,37 @@ private const val BOTTOM_SHEET_HEIGHT_PERCENTAGE = 0.8
 class EmojiBottomSheet(
     private val onAction: (emojiItem: EmojiItem) -> Unit
 ) : BaseBottomSheet(), EmojiItemClickListener {
+
     private lateinit var binding: FragmentEmojiPickerBinding
+
     private val adapter = EmojiAdapter(this)
-    private val spanCount: Int by lazy { resources.getInteger(R.integer.emoji_columns) }
+    private var addedFirstEmoji = false
     private var gridLayoutManager: GridLayoutManager? = null
     private var highlightEnabled = true
-    private val viewModel: EmojiViewModel by lazy {
-        EmojiViewModel(
-            ViewModelModule.provideEmojiRepository(),
-            requireContext()
-        )
-    }
     private var list: List<ListItem>? = null
     private val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-            val endPosition = (gridLayoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+            var endPosition = (gridLayoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+            if (endPosition == 1 && dy == 0 && addedFirstEmoji) {
+                endPosition = 0
+                addedFirstEmoji = false
+                binding.listEmojis.post {
+                    binding.listEmojis.scrollToPosition(endPosition)
+                }
+            }
             val item = list?.getOrNull(endPosition)
             if (item is Title && highlightEnabled) {
                 highlightIcon(item.category)
             }
         }
+    }
+    private val spanCount: Int by lazy { resources.getInteger(R.integer.emoji_columns) }
+    private val viewModel: EmojiViewModel by lazy {
+        EmojiViewModel(
+            ViewModelModule.provideEmojiRepository(),
+            ViewModelModule.provideSharedPreferencesHelper(requireContext()),
+            requireContext()
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,34 +69,18 @@ class EmojiBottomSheet(
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val bottomSheetDialog = super.onCreateDialog(savedInstanceState)
-
-        binding = FragmentEmojiPickerBinding.inflate(
-            LayoutInflater.from(requireContext()),
-            null,
-            false
-        )
-        binding.listEmojis.adapter = adapter
-
+        binding = FragmentEmojiPickerBinding.inflate(LayoutInflater.from(requireContext()), null, false)
         bottomSheetDialog.setContentView(binding.root)
 
-        val parentLayout = binding.root.parent as View
+        setRecyclerView()
+        setObservers()
+        setListeners(bottomSheetDialog)
 
-        bottomSheetDialog.setOnShowListener {
-            setupFullHeight(parentLayout)
-        }
+        return bottomSheetDialog
+    }
 
+    private fun setRecyclerView() {
         gridLayoutManager = GridLayoutManager(requireContext(), spanCount)
-
-        binding.itemInputSearch.inputSearch.doAfterTextChanged {
-            viewModel.search(it.toString())
-            highlightEnabled = it?.isBlank() == true
-            if (it?.isNotBlank() == true) removeAllHighlights()
-            if (it?.isEmpty() == true) {
-                binding.actionSmileys.setColorFilter(ContextCompat.getColor(requireContext(), R.color.accent), android.graphics.PorterDuff.Mode.SRC_IN)
-            }
-        }
-        binding.actionSmileys.setColorFilter(ContextCompat.getColor(requireContext(), R.color.accent), android.graphics.PorterDuff.Mode.SRC_IN)
-
         gridLayoutManager?.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 return when (adapter.getItemViewType(position)) {
@@ -95,13 +90,19 @@ class EmojiBottomSheet(
                 }
             }
         }
-
         binding.listEmojis.layoutManager = gridLayoutManager
         binding.listEmojis.addOnScrollListener(scrollListener)
+        binding.listEmojis.adapter = adapter
+        binding.showRecent = !viewModel.recentEmojisIsEmpty()
+    }
 
+    private fun setObservers() {
         viewModel.emojis.observe(this) { list ->
             val titles = list.filterIsInstance<Title>()
             this.list = list
+            binding.actionRecent.setOnClickListener {
+                scrollTo(titles, list, EmojiCategory.RECENT)
+            }
             binding.actionSmileys.setOnClickListener {
                 scrollTo(titles, list, EmojiCategory.SMILEYS_AND_PEOPLE)
             }
@@ -128,7 +129,30 @@ class EmojiBottomSheet(
             }
             adapter.submitList(list)
         }
-        return bottomSheetDialog
+
+        viewModel.addedFirstEmoji.observe(this) {
+            binding.showRecent = true
+            addedFirstEmoji = true
+        }
+    }
+
+    private fun setListeners(bottomSheetDialog: Dialog) {
+        val parentLayout = binding.root.parent as View
+        bottomSheetDialog.setOnShowListener {
+            setupFullHeight(parentLayout)
+        }
+
+        binding.itemInputSearch.inputSearch.doAfterTextChanged {
+            viewModel.search(it.toString())
+            highlightEnabled = it?.isBlank() == true
+            if (it?.isNotBlank() == true) {
+                removeAllHighlights()
+            }
+            if (it?.isEmpty() == true) {
+                binding.actionRecent.setColorFilter(ContextCompat.getColor(requireContext(), R.color.accent), android.graphics.PorterDuff.Mode.SRC_IN)
+            }
+        }
+        binding.actionRecent.setColorFilter(ContextCompat.getColor(requireContext(), R.color.accent), android.graphics.PorterDuff.Mode.SRC_IN)
     }
 
     private fun scrollTo(titles: List<Title>, list: List<ListItem>, category: EmojiCategory) {
@@ -142,6 +166,7 @@ class EmojiBottomSheet(
 
     private fun highlightIcon(category: EmojiCategory) {
         val view = when (category) {
+            EmojiCategory.RECENT -> binding.actionRecent
             EmojiCategory.SMILEYS_AND_PEOPLE -> binding.actionSmileys
             EmojiCategory.ANIMALS_AND_NATURE -> binding.actionNature
             EmojiCategory.FOOD_AND_DRINK -> binding.actionFood
@@ -159,6 +184,7 @@ class EmojiBottomSheet(
     }
 
     private fun removeAllHighlights() {
+        binding.actionRecent.colorFilter = null
         binding.actionSmileys.colorFilter = null
         binding.actionNature.colorFilter = null
         binding.actionFood.colorFilter = null
@@ -202,5 +228,6 @@ class EmojiBottomSheet(
 
     override fun onItemClick(emojiItem: EmojiItem) {
         onAction.invoke(emojiItem)
+        viewModel.addToRecents(emojiItem)
     }
 }

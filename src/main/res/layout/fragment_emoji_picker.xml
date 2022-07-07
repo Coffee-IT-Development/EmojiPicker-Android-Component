@@ -3,6 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="showRecent"
+            type="Boolean" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -37,7 +47,7 @@
                 android:paddingTop="26dp"
                 android:paddingBottom="18dp"
                 android:src="@drawable/ic_recent"
-                android:visibility="gone" />
+                android:visibility="@{showRecent ? View.VISIBLE : View.GONE}" />
 
             <ImageView
                 android:id="@+id/action_smileys"

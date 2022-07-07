@@ -5,15 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.switchMap
+import nl.coffeeit.aroma.emojipicker.data.local.SharedPreferencesHelper
 import nl.coffeeit.aroma.emojipicker.domain.model.*
 import nl.coffeeit.aroma.emojipicker.domain.repository.EmojiRepository
 
 class EmojiViewModel(
     private val emojiRepository: EmojiRepository,
+    private val sharedPreferencesHelper: SharedPreferencesHelper,
     private val context: Context
 ) : ViewModel() {
 
     private val orderById = listOf(
+        EmojiCategory.RECENT,
         EmojiCategory.SMILEYS_AND_PEOPLE,
         EmojiCategory.ANIMALS_AND_NATURE,
         EmojiCategory.FOOD_AND_DRINK,
@@ -24,6 +27,9 @@ class EmojiViewModel(
         EmojiCategory.FLAGS
     )
 
+    private val _addedFirstEmoji = MutableLiveData<Boolean>()
+    val addedFirstEmoji = _addedFirstEmoji
+
     private val _query = MutableLiveData("")
 
     val emojis = _query.switchMap { query ->
@@ -32,6 +38,13 @@ class EmojiViewModel(
             val emojiCollection = emojiRepository.getEmojis(context)
             val sortedEntries = emojiCollection?.entries?.sortedBy { entry ->
                 orderById.find { it.key == entry.key }
+            }
+            val recentEmojis = sharedPreferencesHelper.getRecentEmojis()
+            if (query.isNullOrEmpty() && recentEmojis.isNotEmpty()) {
+                list.add(Title(EmojiCategory.RECENT))
+                recentEmojis.forEach { recentEmoji ->
+                    list.add(Emoji(recentEmoji.slug, recentEmoji))
+                }
             }
             sortedEntries?.forEach { emoji ->
                 val filteredEmojis =
@@ -60,4 +73,15 @@ class EmojiViewModel(
     }
 
     fun search(query: String) = _query.postValue(query)
+
+    fun recentEmojisIsEmpty() = sharedPreferencesHelper.getRecentEmojis().isEmpty()
+
+    fun addToRecents(emojiItem: EmojiItem) {
+        if (recentEmojisIsEmpty()) {
+             addedFirstEmoji.postValue(true)
+        }
+
+        sharedPreferencesHelper.addRecentEmoji(emojiItem)
+        search(_query.value ?: "")
+    }
 }

@@ -8,6 +8,10 @@ enum class EmojiCategory(
     @StringRes
     val title: Int,
 ) {
+    RECENT(
+        "Recent",
+        R.string.emojipicker_recents
+    ),
     SMILEYS_AND_PEOPLE(
         "Smileys & People",
        R.string.emojipicker_smileys_and_people
