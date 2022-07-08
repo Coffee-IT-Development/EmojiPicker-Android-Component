@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <string name="emojipicker_recents">Historie</string>
+  <string name="emojipicker_smileys_and_people">Smajlíky a lidé</string>
+  <string name="emojipicker_animals_and_nature">Zvířata a příroda</string>
+  <string name="emojipicker_food_and_drink">Jídlo a pití</string>
+  <string name="emojipicker_activity">Aktivita</string>
+  <string name="emojipicker_travel_and_places">Cestování a místa</string>
+  <string name="emojipicker_objects">Objekty</string>
+  <string name="emojipicker_symbols">Symboly</string>
+  <string name="emojipicker_flags">Vlajky</string>
+  <string name="emojipicker_emoji">Emotikony</string>
+  <string name="emojipicker_search">Hledat</string>
+</resources>

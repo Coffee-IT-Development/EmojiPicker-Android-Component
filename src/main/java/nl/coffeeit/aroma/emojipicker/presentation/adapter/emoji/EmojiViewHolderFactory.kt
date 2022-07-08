@@ -19,7 +19,7 @@ class CardViewHolderFactory(
 
         return when (type) {
             ListItem.Type.TITLE -> {
-                TitleViewHolder(ItemTitleBinding.inflate(inflater, parent, false), listener)
+                TitleViewHolder(ItemTitleBinding.inflate(inflater, parent, false))
             }
             ListItem.Type.EMOJI -> {
                 ExtraTitleViewHolder(ItemExtraTitleBinding.inflate(inflater, parent, false), listener)

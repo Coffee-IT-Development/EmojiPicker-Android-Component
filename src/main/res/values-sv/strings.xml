@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <string name="emojipicker_recents">Senaste</string>
+  <string name="emojipicker_smileys_and_people">Smileys och människor</string>
+  <string name="emojipicker_animals_and_nature">Djur och natur</string>
+  <string name="emojipicker_food_and_drink">Mat och dryck</string>
+  <string name="emojipicker_activity">Aktivitet</string>
+  <string name="emojipicker_travel_and_places">Resor</string>
+  <string name="emojipicker_objects">Objekt</string>
+  <string name="emojipicker_symbols">Symboler</string>
+  <string name="emojipicker_flags">Flaggor</string>
+  <string name="emojipicker_emoji">Emoji</string>
+  <string name="emojipicker_search">Sök</string>
+</resources>

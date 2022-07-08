@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <string name="emojipicker_recents">الحديثة</string>
+  <string name="emojipicker_smileys_and_people">ابتسامات وأشخاص</string>
+  <string name="emojipicker_animals_and_nature">حيوانات وطبيعة</string>
+  <string name="emojipicker_food_and_drink">الطعام والشراب</string>
+  <string name="emojipicker_activity">النشاط</string>
+  <string name="emojipicker_travel_and_places">سفر وأماكن</string>
+  <string name="emojipicker_objects">كائنات</string>
+  <string name="emojipicker_symbols">رموز</string>
+  <string name="emojipicker_flags">الأعلام</string>
+  <string name="emojipicker_emoji">إيموجي</string>
+  <string name="emojipicker_search">البحث</string>
+</resources>

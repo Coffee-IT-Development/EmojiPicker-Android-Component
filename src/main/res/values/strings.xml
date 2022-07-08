@@ -1,3 +1,14 @@
 <resources>
-    <string name="search_emoji">Search Emoji</string>
+    <string name="search_emoji" translatable="false">Search Emoji</string>
+    <string name="emojipicker_recents">Recent</string>
+    <string name="emojipicker_smileys_and_people">Smileys &amp; People</string>
+    <string name="emojipicker_animals_and_nature">Animals &amp; Nature</string>
+    <string name="emojipicker_food_and_drink">Food &amp; Drink</string>
+    <string name="emojipicker_activity">Activity</string>
+    <string name="emojipicker_travel_and_places">Travel &amp; Places</string>
+    <string name="emojipicker_objects">Objects</string>
+    <string name="emojipicker_symbols">Symbols</string>
+    <string name="emojipicker_flags">Flags</string>
+    <string name="emojipicker_emoji">Emoji</string>
+    <string name="emojipicker_search">Search</string>
 </resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <string name="emojipicker_recents">Előzmények</string>
+  <string name="emojipicker_smileys_and_people">Hangulatjelek és emberek</string>
+  <string name="emojipicker_animals_and_nature">Állatok és természet</string>
+  <string name="emojipicker_food_and_drink">Ételek és italok</string>
+  <string name="emojipicker_activity">Tevékenység</string>
+  <string name="emojipicker_travel_and_places">Utazás és helyek</string>
+  <string name="emojipicker_objects">Tárgyak</string>
+  <string name="emojipicker_symbols">Szimbólumok</string>
+  <string name="emojipicker_flags">Zászlók</string>
+  <string name="emojipicker_emoji">Emoji</string>
+  <string name="emojipicker_search">Keresés</string>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <string name="emojipicker_recents">Povijest</string>
+  <string name="emojipicker_smileys_and_people">Smajlići i osobe</string>
+  <string name="emojipicker_animals_and_nature">Životinje i priroda</string>
+  <string name="emojipicker_food_and_drink">Hrana i piće</string>
+  <string name="emojipicker_activity">Aktivnost</string>
+  <string name="emojipicker_travel_and_places">Putovanja i mjesta</string>
+  <string name="emojipicker_objects">Predmeti</string>
+  <string name="emojipicker_symbols">Simboli</string>
+  <string name="emojipicker_flags">Zastave</string>
+  <string name="emojipicker_emoji">Emoji</string>
+  <string name="emojipicker_search">Traži</string>
+</resources>

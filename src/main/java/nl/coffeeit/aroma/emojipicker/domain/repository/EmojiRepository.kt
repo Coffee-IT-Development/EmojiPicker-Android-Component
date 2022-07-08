@@ -4,9 +4,7 @@ import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.internal.LinkedTreeMap
 import nl.coffeeit.aroma.emojipicker.R
-import nl.coffeeit.aroma.emojipicker.domain.model.EmojiItem
 import javax.inject.Singleton
-
 
 @Singleton
 class EmojiRepository {
