@@ -22,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
 import nl.coffeeit.aroma.DEFAULT_CORNER_RADIUS
 import nl.coffeeit.aroma.DEFAULT_SCRIM_COLOR
@@ -34,9 +33,12 @@ import nl.coffeeit.aroma.sample.demo_components.EmojiPickerCard
 
 class MainActivity : AppCompatActivity() {
     private var emojiBottomSheetDialogFragment: EmojiBottomSheet? = null
+    private var toast: Toast? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        initiateEmojiPicker()
 
         setContent {
             ComponentsDemoScreen {
@@ -45,19 +47,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun openEmojiPicker() {
-        emojiBottomSheetDialogFragment?.show(
-            supportFragmentManager, EmojiBottomSheet.TAG
-        ) ?: run {
-            emojiBottomSheetDialogFragment = EmojiBottomSheet { emoji ->
-                Toast.makeText(this, "Clicked emoji: ${emoji.emoji}", Toast.LENGTH_SHORT).show()
-            }
-            (emojiBottomSheetDialogFragment as BottomSheetDialogFragment).show(
-                supportFragmentManager, EmojiBottomSheet.TAG
-            )
-        }
+    private fun initiateEmojiPicker() {
+        emojiBottomSheetDialogFragment = EmojiBottomSheet.newInstance({ emoji ->
+            toast?.cancel()
+            toast = Toast.makeText(this, "Selected emoji: ${emoji.emoji}", Toast.LENGTH_SHORT)
+            toast?.show()
+        })
     }
 
+    private fun openEmojiPicker() {
+        emojiBottomSheetDialogFragment?.show(supportFragmentManager, EmojiBottomSheet.TAG)
+    }
 }
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")

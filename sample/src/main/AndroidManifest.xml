@@ -11,16 +11,13 @@
         android:theme="@style/Theme.Sample">
         <activity
             android:name=".MainActivity"
+            android:configChanges="screenLayout|orientation|screenSize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".ActiveDevelopmentActivity"
-            android:exported="false">
         </activity>
     </application>
 
