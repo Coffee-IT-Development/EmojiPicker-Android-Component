@@ -29,9 +29,7 @@ import nl.coffeeit.aroma.emojipicker.presentation.adapter.emoji.EmojiItemClickLi
 private const val BOTTOM_SHEET_HEIGHT_PERCENTAGE = 0.8
 private const val SCROLL_DELAY_AFTER_CLEARING_SEARCH = 50L
 
-class EmojiBottomSheet(
-    private val onAction: (emojiItem: EmojiItem) -> Unit
-) : BaseBottomSheet(), EmojiItemClickListener {
+class EmojiBottomSheet : BaseBottomSheet(), EmojiItemClickListener {
 
     private lateinit var binding: FragmentEmojiPickerBinding
 
@@ -41,6 +39,7 @@ class EmojiBottomSheet(
     private var gridLayoutManager: GridLayoutManager? = null
     private var highlightEnabled = true
     private var list: List<ListItem>? = null
+    private var onAction: (emojiItem: EmojiItem) -> Unit = {}
     private val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             var endPosition = (gridLayoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
@@ -250,6 +249,13 @@ class EmojiBottomSheet(
 
     companion object {
         const val TAG = "EmojiModalBottomSheet"
+
+        fun newInstance(onAction: (emojiItem: EmojiItem) -> Unit, bundle: Bundle = Bundle.EMPTY): EmojiBottomSheet {
+            val fragment = EmojiBottomSheet()
+            fragment.onAction = onAction
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 
     override fun onItemClick(emojiItem: EmojiItem) {
