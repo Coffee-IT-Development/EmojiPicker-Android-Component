@@ -6,7 +6,7 @@ import com.google.gson.reflect.TypeToken
 import nl.coffeeit.aroma.emojipicker.domain.model.EmojiItem
 
 private const val MAX_AMOUNT_OF_RECENT_EMOJIS = 30
-const val KEY_RECENT_EMOJIS = "key_recent_emojis"
+private const val KEY_RECENT_EMOJIS = "key_recent_emojis"
 const val KEY_SHARED_PREFERENCES = "key_aroma_emojipicker_shared_preferences"
 
 class SharedPreferencesHelper(private val sharedPreferences: SharedPreferences) {
