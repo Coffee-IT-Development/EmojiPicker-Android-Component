@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sample">
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.MainActivity"
             android:configChanges="screenLayout|orientation|screenSize"
             android:exported="true">
             <intent-filter>
@@ -19,6 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".presentation.bottom_sheet.BottomSheetActivity" />
+        <activity android:name=".presentation.pincode.PincodeActivity" />
+
     </application>
 
 </manifest>

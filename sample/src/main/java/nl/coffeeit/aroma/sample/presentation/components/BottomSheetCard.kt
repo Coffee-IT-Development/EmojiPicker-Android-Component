@@ -1,4 +1,4 @@
-package nl.coffeeit.aroma.sample.demo_components
+package nl.coffeeit.aroma.sample.presentation.components
 
 import android.graphics.Color.parseColor
 import android.text.TextUtils
@@ -83,7 +83,6 @@ fun BottomSheetCard(
                         .fillMaxWidth(0.80f)
                         .wrapContentHeight())
             }
-
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -183,7 +182,7 @@ fun BottomSheetCard(
                     }
                 }
             ) {
-                Text(text = "Bottom Sheet")
+                Text(text = "Show")
             }
         }
     }

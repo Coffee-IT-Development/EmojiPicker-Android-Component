@@ -40,7 +40,6 @@ android {
 }
 
 dependencies {
-
     implementation project(path: ':emojipicker')
     implementation project(path: ':bottomsheet')
     implementation project(path: ':pincode')
@@ -58,7 +57,6 @@ dependencies {
 
     // Material Design
     implementation "androidx.compose.material:material:1.1.1"
-    implementation 'androidx.compose.material3:material3:1.0.0-alpha01'
 
     implementation "androidx.core:core-ktx:1.8.0"
     implementation "androidx.appcompat:appcompat:1.4.2"

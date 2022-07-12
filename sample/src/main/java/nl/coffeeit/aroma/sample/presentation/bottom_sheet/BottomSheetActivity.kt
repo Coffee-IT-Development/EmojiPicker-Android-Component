@@ -1,16 +1,13 @@
 @file:OptIn(ExperimentalMaterialApi::class)
 
-package nl.coffeeit.aroma.sample
+package nl.coffeeit.aroma.sample.presentation.bottom_sheet
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.Toast
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -27,44 +24,21 @@ import nl.coffeeit.aroma.DEFAULT_CORNER_RADIUS
 import nl.coffeeit.aroma.DEFAULT_SCRIM_COLOR
 import nl.coffeeit.aroma.bottomsheet.Accessory
 import nl.coffeeit.aroma.bottomsheet.BottomSheetWithContent
-import nl.coffeeit.aroma.emojipicker.presentation.ui.emoji.EmojiBottomSheet
-import nl.coffeeit.aroma.sample.demo_components.BottomSheetCard
-import nl.coffeeit.aroma.sample.demo_components.EmojiPickerCard
-import nl.coffeeit.aroma.sample.demo_components.PincodeCard
+import nl.coffeeit.aroma.sample.presentation.components.BottomSheetCard
 
-class MainActivity : AppCompatActivity() {
-    private var emojiBottomSheetDialogFragment: EmojiBottomSheet? = null
-    private var toast: Toast? = null
+class BottomSheetActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        initiateEmojiPicker()
-
         setContent {
-            ComponentsDemoScreen {
-                openEmojiPicker()
-            }
+            ComponentsDemoScreen()
         }
-    }
-
-    private fun initiateEmojiPicker() {
-        emojiBottomSheetDialogFragment = EmojiBottomSheet.newInstance({ emoji ->
-            toast?.cancel()
-            toast = Toast.makeText(this, "Selected emoji: ${emoji.emoji}", Toast.LENGTH_SHORT)
-            toast?.show()
-        })
-    }
-
-    private fun openEmojiPicker() {
-        emojiBottomSheetDialogFragment?.show(supportFragmentManager, EmojiBottomSheet.TAG)
     }
 }
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ComponentsDemoScreen(
-    actionEmojiPicker: () -> Unit
 ) {
     var roundedCornerValue by remember { mutableStateOf(DEFAULT_CORNER_RADIUS) }
     var backgroundColor by remember { mutableStateOf(Color(DEFAULT_SCRIM_COLOR)) }
@@ -78,7 +52,7 @@ fun ComponentsDemoScreen(
                 topBar = {
                     TopAppBar(
                         title = {
-                            Text(text = "Aroma Components")
+                            Text(text = "Bottom Sheet")
                         }
                     )
                 }
@@ -87,27 +61,12 @@ fun ComponentsDemoScreen(
                     Modifier
                         .padding(16.dp)
                 ) {
-
-                    Spacer(modifier = Modifier.height(32.dp))
-
                     BottomSheetCard(scope = scope, state = state,
                         updateRoundedCornerValue = { roundedCornerValue = it },
                         updateColorValue = { backgroundColor = it },
                         updateWidth = { width = it },
                         updateBottomPadding = { bottomPadding = it },
                         updateAccessory = { accessory = it })
-
-                    Spacer(modifier = Modifier.height(32.dp))
-
-                    EmojiPickerCard {
-                        actionEmojiPicker()
-                    }
-
-                    Spacer(modifier = Modifier.height(32.dp))
-
-                    PincodeCard {
-
-                    }
                 }
 
                 BackHandler(
@@ -145,7 +104,5 @@ fun ComponentsDemoScreen(
 @Composable
 @Preview(showBackground = true)
 fun ModalBottomSheetHolderPreview() {
-    ComponentsDemoScreen {
-
-    }
+    ComponentsDemoScreen()
 }
