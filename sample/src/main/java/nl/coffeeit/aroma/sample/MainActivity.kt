@@ -30,6 +30,7 @@ import nl.coffeeit.aroma.bottomsheet.BottomSheetWithContent
 import nl.coffeeit.aroma.emojipicker.presentation.ui.emoji.EmojiBottomSheet
 import nl.coffeeit.aroma.sample.demo_components.BottomSheetCard
 import nl.coffeeit.aroma.sample.demo_components.EmojiPickerCard
+import nl.coffeeit.aroma.sample.demo_components.PincodeCard
 
 class MainActivity : AppCompatActivity() {
     private var emojiBottomSheetDialogFragment: EmojiBottomSheet? = null
@@ -100,6 +101,12 @@ fun ComponentsDemoScreen(
 
                     EmojiPickerCard {
                         actionEmojiPicker()
+                    }
+
+                    Spacer(modifier = Modifier.height(32.dp))
+
+                    PincodeCard {
+
                     }
                 }
 
