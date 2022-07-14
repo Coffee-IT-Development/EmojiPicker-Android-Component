@@ -35,3 +35,7 @@ This makes sure the EmojiPicker keeps working when the configuration changes whe
 Version 1.0.0 *(08-07-2022)*
 ----------------------------
 * Added EmojiPicker
+
+Version 1.0.1 *(14-07-2022)*
+----------------------------
+* Removed automatic refresh of recents. Recents update when the EmojiPicker is opened.
