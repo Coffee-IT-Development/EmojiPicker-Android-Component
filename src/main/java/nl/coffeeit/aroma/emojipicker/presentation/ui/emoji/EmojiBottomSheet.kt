@@ -34,7 +34,6 @@ class EmojiBottomSheet : BaseBottomSheet(), EmojiItemClickListener {
     private lateinit var binding: FragmentEmojiPickerBinding
 
     private val adapter = EmojiAdapter(this)
-    private var addedFirstEmoji = false
     private var category: EmojiCategory? = null
     private var gridLayoutManager: GridLayoutManager? = null
     private var highlightEnabled = true
@@ -42,14 +41,7 @@ class EmojiBottomSheet : BaseBottomSheet(), EmojiItemClickListener {
     private var onAction: (emojiItem: EmojiItem) -> Unit = {}
     private val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-            var endPosition = (gridLayoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
-            if (endPosition == 1 && dy == 0 && addedFirstEmoji) {
-                endPosition = 0
-                addedFirstEmoji = false
-                binding.listEmojis.post {
-                    binding.listEmojis.scrollToPosition(endPosition)
-                }
-            }
+            val endPosition = (gridLayoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
             val item = list?.getOrNull(endPosition)
             if (item is Title && highlightEnabled) {
                 highlightIcon(item.category)
@@ -138,11 +130,6 @@ class EmojiBottomSheet : BaseBottomSheet(), EmojiItemClickListener {
                     scrollTo(titles, list, EmojiCategory.RECENT)
                 }
             }
-        }
-
-        viewModel.addedFirstEmoji.observe(this) {
-            binding.showRecent = true
-            addedFirstEmoji = true
         }
     }
 

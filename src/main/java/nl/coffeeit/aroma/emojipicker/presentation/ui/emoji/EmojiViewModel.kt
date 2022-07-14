@@ -27,9 +27,6 @@ class EmojiViewModel(
         EmojiCategory.FLAGS
     )
 
-    private val _addedFirstEmoji = MutableLiveData<Boolean>()
-    val addedFirstEmoji = _addedFirstEmoji
-
     private val _query = MutableLiveData("")
 
     val emojis = _query.switchMap { query ->
@@ -79,10 +76,6 @@ class EmojiViewModel(
     fun recentEmojisIsEmpty() = sharedPreferencesHelper.getRecentEmojis().isEmpty()
 
     fun addToRecents(emojiItem: EmojiItem) {
-        if (recentEmojisIsEmpty()) {
-             addedFirstEmoji.postValue(true)
-        }
         sharedPreferencesHelper.addRecentEmoji(emojiItem)
-        search(_query.value ?: "")
     }
 }
