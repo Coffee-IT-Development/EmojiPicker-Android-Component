@@ -230,7 +230,8 @@ fun PincodeScreen() {
                     inputSpacing = 8.dp,
                     showDividerAfterInput = 3,
                     dividerColor = Color(0xFF1F325A),
-                    modifier = Modifier.padding(horizontal = 24.dp)
+                    modifier = Modifier.padding(horizontal = 24.dp),
+                    onlyDigits = false
                 )
 
                 Spacer(modifier = Modifier.height(32.dp))
