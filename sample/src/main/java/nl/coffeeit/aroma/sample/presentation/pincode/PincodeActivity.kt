@@ -9,10 +9,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TextFieldDefaults
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,14 +24,18 @@ class PincodeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            PincodeScreen()
+            PincodeScreen {
+                finish()
+            }
         }
     }
 }
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun PincodeScreen() {
+fun PincodeScreen(
+    actionBack: () -> Unit = { }
+) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -77,7 +78,9 @@ fun PincodeScreen() {
                     inputTextStyle = TextStyle(
                         textAlign = TextAlign.Center,
                         color = Color.White
-                    )
+                    ),
+                    autoFocusFirstInput = true,
+                    actionBack = actionBack
                 )
 
                 Spacer(modifier = Modifier.height(32.dp))
@@ -108,7 +111,9 @@ fun PincodeScreen() {
                     errorLabelTextStyle = TextStyle(
                         textAlign = TextAlign.Center,
                         color = Color.White
-                    )
+                    ),
+                    pincode = "472692",
+                    actionBack = actionBack
                 )
             }
 
@@ -137,6 +142,7 @@ fun PincodeScreen() {
                     ),
                     inputSpacing = 8.dp,
                     modifier = Modifier.padding(horizontal = 30.dp),
+                    actionBack = actionBack
                 )
 
                 Spacer(modifier = Modifier.height(32.dp))
@@ -155,7 +161,8 @@ fun PincodeScreen() {
                     ),
                     inputSpacing = 8.dp,
                     modifier = Modifier.padding(horizontal = 30.dp),
-                    isError = true
+                    isError = true,
+                    actionBack = actionBack
                 )
             }
 
@@ -183,7 +190,8 @@ fun PincodeScreen() {
                         errorCursorColor = Color.Transparent
                     ),
                     inputSpacing = 13.75.dp,
-                    modifier = Modifier.padding(horizontal = 40.dp)
+                    modifier = Modifier.padding(horizontal = 40.dp),
+                    actionBack = actionBack
                 )
 
                 Spacer(modifier = Modifier.height(32.dp))
@@ -200,7 +208,8 @@ fun PincodeScreen() {
                     ),
                     inputSpacing = 13.75.dp,
                     modifier = Modifier.padding(horizontal = 40.dp),
-                    isError = true
+                    isError = true,
+                    actionBack = actionBack
                 )
             }
 
@@ -231,7 +240,8 @@ fun PincodeScreen() {
                     showDividerAfterInput = 3,
                     dividerColor = Color(0xFF1F325A),
                     modifier = Modifier.padding(horizontal = 24.dp),
-                    onlyDigits = false
+                    onlyDigits = false,
+                    actionBack = actionBack
                 )
 
                 Spacer(modifier = Modifier.height(32.dp))
@@ -251,7 +261,8 @@ fun PincodeScreen() {
                     dividerColor = Color(0xFF1F325A),
                     modifier = Modifier.padding(horizontal = 24.dp),
                     isError = true,
-                    errorText = "An error occurred"
+                    errorText = "An error occurred",
+                    actionBack = actionBack
                 )
             }
 
@@ -280,7 +291,8 @@ fun PincodeScreen() {
                         errorCursorColor = Color.Transparent
                     ),
                     inputSpacing = 12.dp,
-                    modifier = Modifier.padding(horizontal = 16.dp)
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                    actionBack = actionBack
                 )
 
                 Spacer(modifier = Modifier.height(32.dp))
@@ -298,7 +310,8 @@ fun PincodeScreen() {
                     ),
                     inputSpacing = 12.dp,
                     modifier = Modifier.padding(horizontal = 16.dp),
-                    isError = true
+                    isError = true,
+                    actionBack = actionBack
                 )
             }
         }
