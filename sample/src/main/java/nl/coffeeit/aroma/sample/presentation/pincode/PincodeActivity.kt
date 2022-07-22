@@ -38,6 +38,10 @@ class PincodeActivity : ComponentActivity() {
                 toast?.cancel()
                 val toast = Toast.makeText(this, "Entered pincode: $pincode", Toast.LENGTH_SHORT)
                 toast?.show()
+            },
+            onResendButton = {
+                val toast = Toast.makeText(this, "Code resent", Toast.LENGTH_SHORT)
+                toast?.show()
             })
         }
     }
@@ -47,7 +51,8 @@ class PincodeActivity : ComponentActivity() {
 @Composable
 fun PincodeScreen(
     onBack: () -> Unit = { },
-    onPincodeCompleted: (String?) -> Unit = { }
+    onPincodeCompleted: (String?) -> Unit = { },
+    onResendButton: () -> Unit = { }
 ) {
     val isError = MutableLiveData<Boolean>()
     val pincode = MutableLiveData<String>()
@@ -134,7 +139,9 @@ fun PincodeScreen(
                     isErrorLiveData = isError,
                     resetPincodeLiveData = { pincode.postValue("") },
                     onBack = onBack,
-                    onPincodeCompleted = onPincodeCompleted
+                    onPincodeCompleted = onPincodeCompleted,
+                    enableResendButton = true,
+                    onResendButton = onResendButton
                 )
             }
 
