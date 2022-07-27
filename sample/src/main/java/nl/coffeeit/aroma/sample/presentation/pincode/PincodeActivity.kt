@@ -19,11 +19,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.MutableLiveData
-import nl.coffeeit.aroma.pincode.R
+import nl.coffeeit.aroma.sample.R
 import nl.coffeeit.aroma.pincode.presentation.PincodeView
 
 class PincodeActivity : ComponentActivity() {
@@ -34,12 +37,11 @@ class PincodeActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            PincodeScreen(onBack = { finish()} , onPincodeCompleted = { pincode ->
+            PincodeScreen(onBack = { finish() }, onPincodeCompleted = { pincode ->
                 toast?.cancel()
                 val toast = Toast.makeText(this, "Entered pincode: $pincode", Toast.LENGTH_SHORT)
                 toast?.show()
-            },
-            onResendButton = {
+            }, onResend = {
                 val toast = Toast.makeText(this, "Code resent", Toast.LENGTH_SHORT)
                 toast?.show()
             })
@@ -47,12 +49,20 @@ class PincodeActivity : ComponentActivity() {
     }
 }
 
+private val SocialBloxFontFamily = FontFamily(
+    Font(R.font.lato_regular, FontWeight.Normal),
+    Font(R.font.lato_medium, FontWeight.Medium),
+    Font(R.font.lato_semibold, FontWeight.SemiBold),
+    Font(R.font.lato_bold, FontWeight.Bold),
+    Font(R.font.lato_black, FontWeight.Black)
+)
+
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun PincodeScreen(
     onBack: () -> Unit = { },
     onPincodeCompleted: (String?) -> Unit = { },
-    onResendButton: () -> Unit = { }
+    onResend: () -> Unit = { }
 ) {
     val isError = MutableLiveData<Boolean>()
     val pincode = MutableLiveData<String>()
@@ -124,15 +134,32 @@ fun PincodeScreen(
                     modifier = Modifier.padding(horizontal = 27.dp),
                     inputTextStyle = TextStyle(
                         textAlign = TextAlign.Center,
-                        color = Color.White
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
                     ),
                     inputErrorTextStyle = TextStyle(
                         textAlign = TextAlign.Center,
-                        color = Color(0xFFF7694A)
+                        color = Color(0xFFF7694A),
+                        fontFamily = SocialBloxFontFamily,
+                        fontWeight = FontWeight.Bold
                     ),
                     errorLabelTextStyle = TextStyle(
                         textAlign = TextAlign.Center,
-                        color = Color.White
+                        color = Color.White,
+                        fontFamily = SocialBloxFontFamily,
+                        fontWeight = FontWeight.Normal
+                    ),
+                    resendButtonTextStyle = TextStyle(
+                        color = Color.White,
+                        background = Color(0xFF36343D),
+                        fontFamily = SocialBloxFontFamily,
+                        fontWeight = FontWeight.Bold
+                    ),
+                    resendButtonDisabledTextStyle = TextStyle(
+                        color = Color.White,
+                        background = Color(0xFF757183),
+                        fontFamily = SocialBloxFontFamily,
+                        fontWeight = FontWeight.Bold
                     ),
                     autoFocusFirstInput = true,
                     pincodeLiveData = pincode,
@@ -141,7 +168,8 @@ fun PincodeScreen(
                     onBack = onBack,
                     onPincodeCompleted = onPincodeCompleted,
                     enableResendButton = true,
-                    onResendButton = onResendButton
+                    onResend = onResend,
+                    keyEventInErrorState = { isError.postValue(false) }
                 )
             }
 
