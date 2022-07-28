@@ -286,21 +286,16 @@ fun PincodeScreen(
                 Spacer(modifier = Modifier.height(32.dp))
 
                 PincodeView(
-                    lengthOfCode = 5,
-                    inputWidth = 40.dp,
-                    inputCornerShape = RoundedCornerShape(8.dp),
-                    inputColors = TextFieldDefaults.outlinedTextFieldColors(
-                        focusedBorderColor = Color(0xFFA3BAD4),
-                        unfocusedBorderColor = Color(0xFFA3BAD4),
-                        backgroundColor = Color.White,
-                        cursorColor = Color.Transparent,
-                        errorCursorColor = Color.Transparent
-                    ),
-                    inputSpacing = 12.dp,
-                    modifier = Modifier.padding(horizontal = 16.dp),
                     pincodeLiveData = pincode,
                     isErrorLiveData = isError,
-                    onBack = onBack
+                    enableResendButton = true,
+                    triggerResendOnInit = false,
+                    onPincodeCompleted = {
+                        // Pin code filled in
+                    },
+                    onResend = {
+                        // Resend button clicked
+                    }
                 )
             }
         }
