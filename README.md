@@ -39,3 +39,7 @@ Version 1.0.0 *(08-07-2022)*
 Version 1.0.1 *(14-07-2022)*
 ----------------------------
 * Removed automatic refresh of recents. Recents update when the EmojiPicker is opened.
+
+  Version 1.0.2 *(03-08-2022)*
+----------------------------
+* Made unicode field support mutliple unicodes.
