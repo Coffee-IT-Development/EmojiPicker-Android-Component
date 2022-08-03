@@ -9,14 +9,17 @@ data class EmojiItem(
     @SerializedName("slug") val slug: String
 ) {
     val unicode get() = run {
-        val stringBuilder = StringBuilder(emoji.length)
-        val formatter = Formatter(stringBuilder)
-        for (char in emoji.toCharArray()) {
-            if (char.code < 128) {
-                stringBuilder.append(char)
+        val stringBuilder = StringBuilder()
+        var i = 0
+        while (i < emoji.length) {
+            if (Character.isSurrogate(emoji[i])) {
+                val res: Int = Character.codePointAt(emoji, i)
+                i++
+                stringBuilder.append("0x" + Integer.toHexString(res).uppercase(Locale.getDefault()))
             } else {
-                formatter.format("\\u%04x", char.code)
+                stringBuilder.append(emoji[i])
             }
+            i++
         }
         stringBuilder.toString()
     }
