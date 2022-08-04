@@ -1,6 +1,7 @@
 package nl.coffeeit.aroma.emojipicker.domain.model
 
 import com.google.gson.annotations.SerializedName
+import nl.coffeeit.aroma.emojipicker.util.UNICODE_HEX_PREFIX
 import java.util.*
 
 data class EmojiItem(
@@ -10,16 +11,11 @@ data class EmojiItem(
 ) {
     val unicode get() = run {
         val stringBuilder = StringBuilder()
-        var i = 0
-        while (i < emoji.length) {
-            if (Character.isSurrogate(emoji[i])) {
-                val res: Int = Character.codePointAt(emoji, i)
-                i++
-                stringBuilder.append("0x" + Integer.toHexString(res).uppercase(Locale.getDefault()))
-            } else {
-                stringBuilder.append(emoji[i])
-            }
-            i++
+        var offset = 0
+        while (offset < emoji.length) {
+            val codePoint = emoji.codePointAt(offset)
+            stringBuilder.append(UNICODE_HEX_PREFIX + Integer.toHexString(codePoint).uppercase(Locale.getDefault()))
+            offset += Character.charCount(codePoint)
         }
         stringBuilder.toString()
     }
