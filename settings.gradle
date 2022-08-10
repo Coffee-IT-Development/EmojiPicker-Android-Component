@@ -7,4 +7,4 @@ pluginManagement {
 }
 
 rootProject.name = "Aroma Android Sample"
-include ':sample', ':emojipicker', ':bottomsheet', ':pincode'
+include ':sample', ':emojipicker', ':bottomsheet', ':pincode', ':pincode:sample'
