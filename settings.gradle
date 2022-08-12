@@ -8,3 +8,4 @@ pluginManagement {
 
 rootProject.name = "Aroma Android Sample"
 include ':sample', ':emojipicker', ':bottomsheet', ':pincode', ':pincode:sample'
+project(":pincode").projectDir = file("pincode/pincode")
