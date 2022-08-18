@@ -25,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import nl.coffeeit.aroma.sample.R
 import nl.coffeeit.aroma.pincode.presentation.PincodeView
@@ -32,19 +33,24 @@ import nl.coffeeit.aroma.pincode.presentation.PincodeView
 class PincodeActivity : ComponentActivity() {
 
     private var toast: Toast? = null
+    private val sendCode = MutableLiveData<Boolean>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            PincodeScreen(onBack = { finish() }, onPincodeCompleted = { pincode ->
+            PincodeScreen(onBack = { finish() },
+                onPincodeCompleted = { pincode ->
                 toast?.cancel()
                 val toast = Toast.makeText(this, "Entered pincode: $pincode", Toast.LENGTH_SHORT)
                 toast?.show()
-            }, onResend = {
-                val toast = Toast.makeText(this, "Code resent", Toast.LENGTH_SHORT)
+            }, onSend = {
+                val toast = Toast.makeText(this, "Code sent", Toast.LENGTH_SHORT)
                 toast?.show()
-            })
+                sendCode.postValue(false)
+            },
+            sendCodeLiveData = sendCode)
+            sendCode.postValue(true)
         }
     }
 }
@@ -62,7 +68,8 @@ private val SocialBloxFontFamily = FontFamily(
 fun PincodeScreen(
     onBack: () -> Unit = { },
     onPincodeCompleted: (String?) -> Unit = { },
-    onResend: () -> Unit = { }
+    onSend: () -> Unit = { },
+    sendCodeLiveData: LiveData<Boolean> = MutableLiveData(false),
 ) {
     val isError = MutableLiveData<Boolean>()
     val pincode = MutableLiveData<String>()
@@ -89,7 +96,6 @@ fun PincodeScreen(
                         } else {
                             isError.postValue(true)
                         }
-
                     }) {
                         Icon(
                             painter = painterResource(R.drawable.ic_error),
@@ -149,13 +155,13 @@ fun PincodeScreen(
                         fontFamily = SocialBloxFontFamily,
                         fontWeight = FontWeight.Normal
                     ),
-                    resendButtonTextStyle = TextStyle(
+                    sendButtonTextStyle = TextStyle(
                         color = Color.White,
                         background = Color(0xFF36343D),
                         fontFamily = SocialBloxFontFamily,
                         fontWeight = FontWeight.Bold
                     ),
-                    resendButtonDisabledTextStyle = TextStyle(
+                    sendButtonDisabledTextStyle = TextStyle(
                         color = Color.White,
                         background = Color(0xFF757183),
                         fontFamily = SocialBloxFontFamily,
@@ -167,9 +173,10 @@ fun PincodeScreen(
                     resetPincodeLiveData = { pincode.postValue("") },
                     onBack = onBack,
                     onPincodeCompleted = onPincodeCompleted,
-                    enableResendButton = true,
-                    onResend = onResend,
-                    keyEventInErrorState = { isError.postValue(false) }
+                    enableSendButton = true,
+                    onSend = onSend,
+                    keyEventInErrorState = { isError.postValue(false) },
+                    sendCodeLiveData = sendCodeLiveData
                 )
             }
 
@@ -286,16 +293,21 @@ fun PincodeScreen(
                 Spacer(modifier = Modifier.height(32.dp))
 
                 PincodeView(
+                    lengthOfCode = 5,
+                    inputWidth = 40.dp,
+                    inputCornerShape = RoundedCornerShape(8.dp),
+                    inputColors = TextFieldDefaults.outlinedTextFieldColors(
+                        focusedBorderColor = Color(0xFFA3BAD4),
+                        unfocusedBorderColor = Color(0xFFA3BAD4),
+                        backgroundColor = Color.White,
+                        cursorColor = Color.Transparent,
+                        errorCursorColor = Color.Transparent
+                    ),
+                    inputSpacing = 12.dp,
+                    modifier = Modifier.padding(horizontal = 16.dp),
                     pincodeLiveData = pincode,
                     isErrorLiveData = isError,
-                    enableResendButton = true,
-                    triggerResendOnInit = false,
-                    onPincodeCompleted = {
-                        // Pin code filled in
-                    },
-                    onResend = {
-                        // Resend button clicked
-                    }
+                    onBack = onBack
                 )
             }
         }
