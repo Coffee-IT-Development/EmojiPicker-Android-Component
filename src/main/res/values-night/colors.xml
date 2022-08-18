@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background">#191D20</color>
-    <color name="backgroundInput">#343338</color>
-    <color name="categoryColor">#CCFFFFFF</color>
-    <color name="dividerColor">#28282D</color>
-    <color name="searchTextColor">#CCFFFFFF</color>
+    <color name="emojiPickerBackground">#191D20</color>
+    <color name="emojiPickerBackgroundInput">#343338</color>
+    <color name="emojiPickerCategoryIconTint">#ACACAC</color>
+    <color name="emojiPickerDivider">#28282D</color>
+    <color name="emojiPickerSearchIconTint">#FFFFFF</color>
+    <color name="emojiPickerSelectedCategoryIconTint">#C890ED</color>
+    <color name="emojiPickerText">#CCFFFFFF</color>
 </resources>

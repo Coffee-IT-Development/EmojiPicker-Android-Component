@@ -22,14 +22,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/search_emoji"
-        android:textColor="@color/searchTextColor"
-        android:textColorHint="@color/searchTextColor"
+        android:background="@android:color/transparent"
+        android:textColor="@color/emojiPickerText"
         android:inputType="text"
+        android:textColorHint="@color/emojiPickerText"
+        android:textCursorDrawable="@drawable/bg_cursor"
         android:layout_marginStart="9dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/iv_search"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@null"/>
+        android:textSize="16sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

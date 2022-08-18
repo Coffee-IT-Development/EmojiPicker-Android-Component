@@ -4,5 +4,5 @@
     android:shape="rectangle">
 
     <corners android:radius="10dp" />
-    <solid android:color="@color/backgroundInput" />
+    <solid android:color="@color/emojiPickerBackgroundInput" />
 </shape>
