@@ -27,6 +27,7 @@ Created by [Coffee IT](https://coffeeit.nl/). Look at our other repositories on 
 
 <p float="left">
 <img src="https://i.imgur.com/Sl2Ih6Z.gif" width="200">
+&nbsp; &nbsp; &nbsp; &nbsp;
 <img src="https://i.imgur.com/XipAihj.gif" width="200">
 </p>
 
