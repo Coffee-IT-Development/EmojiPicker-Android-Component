@@ -1,4 +1,4 @@
-[![Coffee IT - Android Aroma EmojiPicker Component](https://coffeeit.nl/wp-content/uploads/2022/08/Aroma_EmojiPicker_Android.png)](https://coffeeit.nl/)
+[![Coffee IT - Android Aroma EmojiPicker Component](https://coffeeit.nl/wp-content/uploads/2022/08/Aroma-pincode-cover-android.png)](https://coffeeit.nl/)
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/nl.coffeeit.aroma/emojipicker/badge.svg)](https://maven-badges.herokuapp.com/Maven-Central/nl.coffeeit.aroma/emojipicker)
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
@@ -25,7 +25,8 @@ This GitHub repository is a mirror, the official repository is hosted privately 
 Created by [Coffee IT](https://coffeeit.nl/). Look at our other repositories on our
 [GitHub account](https://github.com/orgs/Coffee-IT-Development/repositories).
 
-<img src="https://i.imgur.com/PZkGq79.gif" width="300">
+<img src="https://i.imgur.com/Sl2Ih6Z.gif" width="200">
+<img src="https://i.imgur.com/XipAihj.gif" width="200">
 
 # ⚡ Installation
 

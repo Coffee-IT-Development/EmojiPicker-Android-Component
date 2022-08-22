@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by Coffee IT
+  ~
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2022 Coffee IT
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+
+<resources>
+  <string name="emojipicker_recents">Recentes</string>
+  <string name="emojipicker_smileys_and_people">Smileys e Pessoas</string>
+  <string name="emojipicker_animals_and_nature">Animais e Natureza</string>
+  <string name="emojipicker_food_and_drink">Comida e Bebida</string>
+  <string name="emojipicker_activity">Atividades</string>
+  <string name="emojipicker_travel_and_places">Viagem e Lugares</string>
+  <string name="emojipicker_objects">Objetos</string>
+  <string name="emojipicker_symbols">Símbolos</string>
+  <string name="emojipicker_flags">Bandeiras</string>
+  <string name="emojipicker_emoji">Emoji</string>
+  <string name="emojipicker_search">Buscar</string>
+</resources>
