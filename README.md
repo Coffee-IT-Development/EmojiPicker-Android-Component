@@ -38,7 +38,7 @@ This component requires minimum SDK 21.
 Add the following to `build.gradle`:
 ```
 dependencies {
-    implementation "nl.coffeeit.aroma:emojipicker:1.0.3"
+    implementation "nl.coffeeit.aroma:emojipicker:1.0.4"
 }
 ```
 
@@ -75,7 +75,7 @@ __`EmojiPicker` uses the following color resources, which can be overwritten:__
 
 # ✏️ Changelog
 
-Version 1.0.4 *(18-08-2022)*
+Version 1.0.4 *(22-08-2022)*
 ----------------------------
 * Changed color names to the following so they are more easily overwritable:
 ```
