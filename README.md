@@ -11,7 +11,7 @@
 
 # ☕️ Android Aroma EmojiPicker
 
-The Android Aroma EmojiPicker package provides an emojipicker with automatic day and night mode.
+The Android Aroma EmojiPicker package provides an emojipicker with automatic day and night mode. This README describes how to implement the EmojiPicker into an app.
 
 This GitHub repository is a mirror, the official repository is hosted privately by Coffee IT.
 
@@ -74,7 +74,6 @@ Hebrew, Hindi, Croatian, Hungarian, Indonesian, Italian, Japanese, Korean, Malay
 Polish, Brazilian Portuguese, Portuguese, Romanian, Russian, Slovak, Swedish, Thai, Turkish,
 Ukrainian, Vietnamese, Simplified Chinese, Traditional Chinese and Hong Kong Chinese.
 Searching for an emoji can only be done in the English language.
-This README describes how to implement the EmojiPicker into an app.
 
 # ✏️ Changelog
 
