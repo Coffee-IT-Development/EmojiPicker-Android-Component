@@ -12,13 +12,6 @@
 # ☕️ Android Aroma EmojiPicker
 
 The Android Aroma EmojiPicker package provides an emojipicker with automatic day and night mode.
-Colors can be overwritten and the EmojiPicker supports 39 languages: Arabic, Catalan, Czech, Danish, 
-German, Greek, English, Australian English, British English, Spanish, Latin, Finnish, French, Canadian, 
-Hebrew, Hindi, Croatian, Hungarian, Indonesian, Italian, Japanese, Korean, Malay, Norwegian, Dutch, 
-Polish, Brazilian Portuguese, Portuguese, Romanian, Russian, Slovak, Swedish, Thai, Turkish, 
-Ukrainian, Vietnamese, Simplified Chinese, Traditional Chinese and Hong Kong Chinese.
-Searching for an emoji can only be done in the English language. 
-This README describes how to implement the EmojiPicker into an app.
 
 This GitHub repository is a mirror, the official repository is hosted privately by Coffee IT.
 
@@ -61,7 +54,7 @@ The unicode for the Welsh flag emoji (󠁢󠁷󠁬󠁳󠁢󠁷󠁬󠁳󠁢󠁷�
 method on that String, it's converted to 󠁢󠁷󠁬󠁳󠁢󠁷󠁬󠁳󠁢󠁷󠁬󠁳🏴󠁧󠁢󠁷󠁬󠁳󠁿 again. It can be used as follows: 
 `"0x1F3F40xE00670xE00620xE00770xE006C0xE00730xE007F".toEmoji()` or `emoji.unicode.toEmoji()`.
 
-## ⚙️ Customisation
+# ⚙️ Customisation
 __`EmojiPicker` uses the following color resources, which can be overwritten:__
 ```
 <color name="emojiPickerBackground"></color>
@@ -72,6 +65,16 @@ __`EmojiPicker` uses the following color resources, which can be overwritten:__
 <color name="emojiPickerSelectedCategoryIconTint"></color>
 <color name="emojiPickerText"></color>
 ```
+
+# 🌎 Multi-language 
+
+The EmojiPicker supports 39 languages: Arabic, Catalan, Czech, Danish,
+German, Greek, English, Australian English, British English, Spanish, Latin, Finnish, French, Canadian,
+Hebrew, Hindi, Croatian, Hungarian, Indonesian, Italian, Japanese, Korean, Malay, Norwegian, Dutch,
+Polish, Brazilian Portuguese, Portuguese, Romanian, Russian, Slovak, Swedish, Thai, Turkish,
+Ukrainian, Vietnamese, Simplified Chinese, Traditional Chinese and Hong Kong Chinese.
+Searching for an emoji can only be done in the English language.
+This README describes how to implement the EmojiPicker into an app.
 
 # ✏️ Changelog
 
