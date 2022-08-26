@@ -55,6 +55,7 @@ method on that String, it's converted to 󠁢󠁷󠁬󠁳󠁢󠁷󠁬󠁳󠁢�
 `"0x1F3F40xE00670xE00620xE00770xE006C0xE00730xE007F".toEmoji()` or `emoji.unicode.toEmoji()`.
 
 # ⚙️ Customisation
+
 __`EmojiPicker` uses the following color resources, which can be overwritten:__
 ```
 <color name="emojiPickerBackground"></color>
@@ -80,6 +81,7 @@ Searching for an emoji can only be done in the English language.
 The changelog can be found [here](https://github.com/Coffee-IT-Development/EmojiPicker-Android-Component/blob/main/CHANGELOG.md).
 
 # 📧 Contact
+
 Do you have questions, ideas or need help? Send us an email at contact@coffeeit.nl.
 
 <picture>
@@ -89,4 +91,5 @@ Do you have questions, ideas or need help? Send us an email at contact@coffeeit.
 </picture>
 
 # ⚠️ License
+
 Android Aroma EmojiPicker is licensed under the terms of the [MIT Open Source license](https://github.com/Coffee-IT-Development/EmojiPicker-Android-Component/blob/main/LICENSE).
