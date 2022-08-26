@@ -77,35 +77,7 @@ Searching for an emoji can only be done in the English language.
 
 # ✏️ Changelog
 
-Version 1.0.4 *(22-08-2022)*
-----------------------------
-* Changed color names to the following so they are more easily overwritable:
-```
-<color name="emojiPickerBackground"></color>
-<color name="emojiPickerBackgroundInput"></color>
-<color name="emojiPickerCategoryIconTint"></color>
-<color name="emojiPickerDivider"></color>
-<color name="emojiPickerSearchIconTint"></color>
-<color name="emojiPickerSelectedCategoryIconTint"></color>
-<color name="emojiPickerText"></color>
-```
-
-Version 1.0.3 *(04-08-2022)*
-----------------------------
-* Improved support for mutliple unicodes.
-* Added extension method `toEmoji()` to convert unicode to an emoji.
-
-Version 1.0.2 *(03-08-2022)*
-----------------------------
-* Made unicode field support mutliple unicodes.
-
-Version 1.0.1 *(14-07-2022)*
-----------------------------
-* Removed automatic refresh of recents. Recents update when the EmojiPicker is opened.
-
-Version 1.0.0 *(08-07-2022)*
-----------------------------
-* Added EmojiPicker.
+The changelog can be found [here](https://github.com/Coffee-IT-Development/EmojiPicker-Android-Component/blob/main/CHANGELOG).
 
 # 📧 Contact
 Do you have questions, ideas or need help? Send us an email at contact@coffeeit.nl.
