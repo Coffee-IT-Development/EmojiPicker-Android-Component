@@ -15,8 +15,7 @@ The Android Aroma EmojiPicker package provides an emojipicker with automatic day
 
 This GitHub repository is a mirror, the official repository is hosted privately by Coffee IT.
 
-Created by [Coffee IT](https://coffeeit.nl/). Look at our other repositories on our
-[GitHub account](https://github.com/orgs/Coffee-IT-Development/repositories).
+Created by [Coffee IT](https://coffeeit.nl/).
 
 <p float="left">
 <img src="https://i.imgur.com/Sl2Ih6Z.gif" width="200">
@@ -79,6 +78,10 @@ Searching for an emoji can only be done in the English language.
 # ✏️ Changelog
 
 The changelog can be found [here](https://github.com/Coffee-IT-Development/EmojiPicker-Android-Component/blob/main/CHANGELOG.md).
+
+# 🔗 Related publications
+
+Look at our other repositories on our [GitHub account](https://github.com/orgs/Coffee-IT-Development/repositories).
 
 # 📧 Contact
 
