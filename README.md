@@ -77,7 +77,7 @@ Searching for an emoji can only be done in the English language.
 
 # ✏️ Changelog
 
-The changelog can be found [here](https://github.com/Coffee-IT-Development/EmojiPicker-Android-Component/blob/main/CHANGELOG).
+The changelog can be found [here](https://github.com/Coffee-IT-Development/EmojiPicker-Android-Component/blob/main/CHANGELOG.md).
 
 # 📧 Contact
 Do you have questions, ideas or need help? Send us an email at contact@coffeeit.nl.
