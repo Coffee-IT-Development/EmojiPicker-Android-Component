@@ -1,3 +1,9 @@
+# Change log
+
+Version 1.0.5 *(07-09-2022)*
+----------------------------
+* Removed build variants because it caused issues in other projects.
+
 Version 1.0.4 *(22-08-2022)*
 ----------------------------
 * Changed color names to the following so they are more easily overwritable:
