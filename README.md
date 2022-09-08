@@ -27,17 +27,26 @@ Created by [Coffee IT](https://coffeeit.nl/).
 
 This component requires minimum SDK 21.
 
-Add the following to `build.gradle`:
-```
+Add the dependency to `build.gradle`.
+
+Groovy:
+```Groovy
 dependencies {
     implementation "nl.coffeeit.aroma:emojipicker:1.0.5"
+}
+```
+
+KTS:
+```Kotlin
+dependencies {
+    implementation("nl.coffeeit.aroma:emojipicker:1.0.5")
 }
 ```
 
 # 📖 Usage
 
 To use the EmojiPicker in a project, simply add it to your code like this:
-```
+```Kotlin
 val emojiBottomSheetDialogFragment = EmojiBottomSheet.newInstance({ emoji ->
         // Handle emoji click
     })
@@ -56,7 +65,7 @@ method on that String, it's converted to 󠁢󠁷󠁬󠁳󠁢󠁷󠁬󠁳󠁢�
 # ⚙️ Customisation
 
 __`EmojiPicker` uses the following color resources, which can be overwritten:__
-```
+```XML
 <color name="emojiPickerBackground"></color>
 <color name="emojiPickerBackgroundInput"></color>
 <color name="emojiPickerCategoryIconTint"></color>
