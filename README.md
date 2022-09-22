@@ -32,14 +32,14 @@ Add the dependency to `build.gradle`.
 Groovy:
 ```Groovy
 dependencies {
-    implementation "nl.coffeeit.aroma:emojipicker:1.0.5"
+    implementation "nl.coffeeit.aroma:emojipicker:1.0.6"
 }
 ```
 
 KTS:
 ```Kotlin
 dependencies {
-    implementation("nl.coffeeit.aroma:emojipicker:1.0.5")
+    implementation("nl.coffeeit.aroma:emojipicker:1.0.6")
 }
 ```
 
